@@ -171,7 +171,7 @@ DATA akun
 				$data = array(
 					'id_akun' => '' ,
 					'username' => $_POST['username'], 
-					'password' => $_POST['password'],
+					'password' => md5($_POST['password']),
 					'id_unit' => $_POST['id_unit'],
 					'level' => $_POST['level']
 
@@ -198,7 +198,7 @@ DATA akun
 			{
 				$data = array(
 					'username' => $_POST['username'], 
-					'password' => md5($_POST['password']),
+					'password' => $_POST['password'],
 					'id_unit' => $_POST['id_unit'],
 					'level' => $_POST['level']
 
