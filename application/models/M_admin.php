@@ -58,6 +58,12 @@ DATA UNIT
 		$this->db->insert('unit',$data);
 	}
 
+	public function proses_edit_unit($data,$id_unit)
+	{
+		$this->db->where('id_unit',$id_unit);
+		$this->db->update('unit',$data);
+	}
+
 	/**
 =====================================================================================================================================
 DATA AKUN

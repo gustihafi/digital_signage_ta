@@ -36,7 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="card">
               <div class="card-body" style="display: flex;">
                 <div class="row">
-                    <img  style="height: 100px; width: 10%" src="<?php echo base_url() ?>file/logo.png">
+                    <img  style="height: 100px;" src="<?php echo base_url() ?>file/logo.png">
                     <div class="col-md-5">
                       <h2 style="margin-top: 4%;">Politeknik Negeri Tanah Laut</h2>
                       <p class="card-text">

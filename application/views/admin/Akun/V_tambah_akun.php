@@ -40,23 +40,26 @@
                             <input type="password" class="form-control"  id="password" name="password" placeholder="Password">
                             <input type="checkbox" class="form-checkbox"> Show password
                           </div>
-                            <div class="form-group">
-                            <label for="golongan">Akun</label>
-                            <input type="text" class="form-control" id="akun" name="akun" placeholder="Akun">
-                          </div>
                            <div class="form-group">
                             <label for="golongan">Level</label>
-                            <input type="text" class="form-control" id="level" name="level" placeholder="Level">
+                            <select  class="form-control select2" id="level" name="level">
+                              <option selected="selected" disabled="">----Pilih Level----</option>
+                              <option value="Admin">Admin</option>
+                              <option value="Mahasiswa">Mahasiswa</option>
+                              <option value="Asisten Wadir">Asisten Wadir</option>
+                              <option value="Asisten Direktur">Asisten Direktur</option>
+                              <option value="Staf">Staf</option>
+                            </select>
                           </div>
                            <div class="form-group">
-                  <label>Unit Pelaksana</label>
-                  <select class="form-control select2" name="id_unit" style="width: 100%;">
-                    <option selected="selected" disabled="">----Pilih Unit----</option>
-                    <?php foreach ($unit as $dt):?>
-                    <option value="<?php echo $dt['id_unit']; ?>"><?php echo $dt['nama_unit']; ?></option>
-                  <?php endforeach; ?>
-                  </select>
-                </div>
+                            <label>Unit Pelaksana</label>
+                            <select class="form-control select2" name="id_unit" style="width: 100%;">
+                              <option selected="selected" disabled="">----Pilih Unit----</option>
+                              <?php foreach ($unit as $dt):?>
+                              <option value="<?php echo $dt['id_unit']; ?>"><?php echo $dt['nama_unit']; ?></option>
+                            <?php endforeach; ?>
+                            </select>
+                          </div>
                       </div>
                   </div>
                 </div>

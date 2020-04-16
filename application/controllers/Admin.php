@@ -10,6 +10,14 @@
 			{
 				parent::__construct();
 				$this->load->model('M_admin','admin');
+				if($this->session->userdata('status') != 'login'){
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<h4><i class="icon fa fa-ban"></i> Failed!</h4>
+						Harus Login!
+					  </div>');
+					redirect('');
+					}
 			}
 
 			public function index()
@@ -113,12 +121,25 @@ DATA UNIT
 			}
 
 
-		public function edit_unit()
+		public function edit_unit($id_unit)
 			{
-				$this->load->view('head');
+				$data['golongan'] = $this->admin->lihat_golongan();
+				$data['unit'] = $this->admin->lihat_unit($id_unit);
+				$this->load->view('head',$data);
 				$this->load->view('admin/menu');
 				$this->load->view('admin/Unit/V_edit_unit');
 				$this->load->view('footer');
+			}
+
+		public function proses_edit_unit()
+			{
+				$data = array(
+					'nama_unit' => $_POST['nama_unit'], 
+					'id_golongan' => $_POST['id_golongan']
+				);
+				$id_unit = $_POST['id_unit'];
+				$this->admin->proses_edit_unit($data,$id_unit);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_unit')."';</script>";
 			}
 			
 /**
@@ -150,7 +171,7 @@ DATA akun
 				$data = array(
 					'id_akun' => '' ,
 					'username' => $_POST['username'], 
-					'password' => md5($_POST['password']),
+					'password' => $_POST['password'],
 					'id_unit' => $_POST['id_unit'],
 					'level' => $_POST['level']
 

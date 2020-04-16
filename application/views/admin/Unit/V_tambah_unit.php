@@ -39,15 +39,15 @@
                             <label for="golongan">Unit Pelaksana</label>
                             <input type="text" class="form-control" id="unit" name="unit" placeholder="Unit Pelaksana">
                           </div>
-                             <div class="form-group">
-                  <label>Golongan Pelaksana</label>
-                  <select class="form-control select2" name="id_golongan" style="width: 100%;">
-                    <option selected="selected" disabled="">----Pilih Golongan----</option>
-                    <?php foreach ($golongan as $dt):?>
-                    <option value="<?php echo $dt['id_golongan']; ?>"><?php echo $dt['golongan']; ?></option>
-                  <?php endforeach; ?>
-                  </select>
-                </div>
+                          <div class="form-group">
+                            <label>Golongan Pelaksana</label>
+                            <select class="form-control select2" name="id_golongan" style="width: 100%;">
+                              <option selected="selected" disabled="">----Pilih Golongan----</option>
+                              <?php foreach ($golongan as $dt):?>
+                              <option value="<?php echo $dt['id_golongan']; ?>"><?php echo $dt['golongan']; ?></option>
+                            <?php endforeach; ?>
+                            </select>
+                          </div>
                       </div>
                   </div>
                 </div>
@@ -55,9 +55,9 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="<?php echo base_url('admin/lihat_golongan'); ?>"><button class="btn btn-danger">Cancel</button></a>
+                  </form>
+                  <a class="btn btn-danger" href="<?php echo base_url('admin/lihat_golongan'); ?>"> Cancel</a>
                 </div>
-              </form>
             </div>
       </div><!-- /.container-fluid -->
     </section>
