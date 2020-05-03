@@ -27,7 +27,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" method="POST" action="<?php echo base_url('mahasiswa/proses_tambah_agenda') ?>">
+              <form role="form" method="POST" action="<?php echo base_url('admin/proses_tambah_agenda') ?>">
                 <div class="card-body">
                   <div class="row">
                       <div class="col-md-6">
@@ -103,7 +103,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="<?php echo base_url('mahasiswa/lihat_agenda'); ?>"><button class="btn btn-danger">Cancel</button></a>
+                  <a href="<?php echo base_url('admin/lihat_agenda'); ?>"><button class="btn btn-danger">Cancel</button></a>
                 </div>
               </form>
             </div>
