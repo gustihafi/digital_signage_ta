@@ -44,9 +44,9 @@
     <ul class="navbar-nav ml-auto">
       
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-          <i class="fas fa-th-large"></i>
-        </a>
+      <a href="<?php echo base_url('Auth/logout') ?>" onClick="return confirm('Apakah Ingin Logout?')" class="nav-link">
+        <i class="nav-icon fas fa-power-off"></i>
+      </a>
       </li>
     </ul>
   </nav>

@@ -196,14 +196,19 @@ DATA akun
 
 			public function proses_edit_akun()
 			{
-				$data = array(
-					'username' => $_POST['username'], 
-					'password' => $_POST['password'],
-					'id_unit' => $_POST['id_unit'],
-					'level' => $_POST['level']
-
-
-				);
+				if(!empty($_POST['pwd_baru'])){
+					$data = array(
+						'username' => $_POST['username'], 
+						'password' => md5($_POST['pwd_baru']),
+						'level' => $_POST['level'] 
+					);
+				}else{
+					$data = array(
+						'username' => $_POST['username'], 
+						'password' => $_POST['pwd_lama'],
+						'level' => $_POST['level'] 
+					);
+				}
 				$id_akun = $_POST['id_akun'];
 				$this->admin->proses_edit_akun($data,$id_akun);
 				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_akun')."';</script>";

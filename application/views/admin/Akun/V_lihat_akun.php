@@ -35,7 +35,6 @@
                 <tr>
                   <th> No</th>
                   <th> Username</th>
-                  <th> Password</th>
                   <th> Level</th>
                   <th> Unit</th>
                   <th> Aksi</th>
@@ -49,24 +48,18 @@
                 ?>
                 <tr>
 
-                 <td><?php echo $no++; ?></td>
+                  <td><?php echo $no++; ?></td>
                   <td><?php echo $key['username']; ?></td>
-                 <td><?php echo $key['password']; ?></td>
-                    <td><?php echo $key['level']; ?></td>
-                   <td><?php echo $key['nama_unit']; ?></td>
-                  <td><a href="<?php echo base_url('admin/edit_akun/'.$key['id_akun']) ?>"><button class="btn btn-primary"><i class="fas fa-edit"></i> Akun</button></a> <a href="<?php echo base_url('admin/hapus_akun/'.$key['id_akun']) ?>"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a></td>
+                  <td><?php echo $key['level']; ?></td>
+                  <td><?php echo $key['nama_unit']; ?></td>
+                  <td>
+                  <a href="<?php echo base_url('admin/edit_akun/'.$key['id_akun']) ?>"><button class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button></a> 
+                  <a href="<?php echo base_url('admin/hapus_akun/'.$key['id_akun']) ?>" onClick="return confirm('Yakin Hapus?')"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                  </td>
 
                 </tr>
                 <?php endforeach; ?>
                 </tbody>
-                <tfoot>
-                  <th> No</th>
-              <th> Username</th>
-                  <th> Password</th>
-                  <th> Level</th>
-                  <th> Unit</th>
-                  <th> Aksi</th>
-                </tfoot>
               </table>
             </div>
             <!-- /.card-body -->

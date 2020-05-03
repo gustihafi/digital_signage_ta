@@ -38,12 +38,25 @@
                             <input type="hidden" class="form-control" name="id_akun" value="<?php echo $dt['id_akun']; ?>"name="id_akun">
                           </div>
                           <div class="form-group">
-                            <label for="golongan">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" value="<?php echo $dt['password']; ?>" placeholder="Password">
-                           <div class="form-group">
-                            <label for="golongan">Level</label>
-                            <input type="text" class="form-control" id="level" name="level"  value="<?php echo $dt['level']; ?>"placeholder="Level">
+                            <label for="golongan">Password Baru</label>
+                            <input type="password" class="form-control" id="password" name="pwd_baru" placeholder="Password">
                           </div>
+                          <div class="form-group">                                        
+                              <label>Password Lama  </label>
+                              <input type="checkbox" name="pwd_lama" value="<?= $dt['password'] ?>" /><br>
+                              * Centang tidak ingin ganti password
+                          </div>
+                          <div class="form-group">
+                              <label>Level</label>
+                              <select class="form-control select2" name="level" style="width: 100%;">
+                                <option selected="selected" disabled="" value="<?php echo $dt['level']; ?>"><?php echo $dt['level']; ?></option>
+                                <option value="Admin">Admin</option>
+                                <option value="Mahasiswa">Mahasiswa</option>
+                                <option value="Asisten Wadir">Asisten Wadir</option>
+                                <option value="Asisten Direktur">Asisten Direktur</option>
+                                <option value="Staf">Staf</option>
+                              </select>
+                            </div>
                           <div class="form-group">
                               <label>Unit Pelaksana</label>
                               <select class="form-control select2" name="id_unit" style="width: 100%;">
