@@ -49,7 +49,7 @@
                           <div class="form-group">
                               <label>Level</label>
                               <select class="form-control select2" name="level" style="width: 100%;">
-                                <option selected="selected" disabled="" value="<?php echo $dt['level']; ?>"><?php echo $dt['level']; ?></option>
+                                <option selected="selected" value="<?php echo $dt['level']; ?>"><?php echo $dt['level']; ?></option>
                                 <option value="Admin">Admin</option>
                                 <option value="Mahasiswa">Mahasiswa</option>
                                 <option value="Asisten Wadir">Asisten Wadir</option>
