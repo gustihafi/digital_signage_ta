@@ -63,7 +63,6 @@
               <i class="nav-icon fas fa-calendar"></i>
               <p>
                 Agenda
-               
               </p>
             </a>
           </li>
@@ -72,13 +71,10 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Persetujuan
-               
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url('admin/lihat_akun') ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
            <li class="nav-item">
             <a href="<?php echo base_url('admin/lihat_display') ?>" class="nav-link">
               <i class="nav-icon fas fa-desktop"></i>
