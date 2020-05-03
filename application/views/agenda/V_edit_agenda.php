@@ -102,10 +102,7 @@
                             <input type="date" class="form-control" id="tanggal_publish" name="tanggal_publish" value="<?php echo $dt['tanggal_publish']; ?>" placeholder="Tanggal publish">
                           </div>
 
-                           <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="persetujuan" id="persetujuan" value="1" <?php if($dt['persetujuan'] == '1'){ echo "checked"; } ?>>
-                            <label class="form-check-label" for="exampleCheck1">Minta Persetujuan</label>
-                          </div>
+
 
                       </div>
                   </div>

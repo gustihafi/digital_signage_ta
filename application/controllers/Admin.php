@@ -238,6 +238,7 @@ DATA agenda
 			public function tambah_agenda()
 			{
 				$data['unit'] = $this->admin->lihat_unit();
+				$data['display'] = $this->admin->lihat_display();
 				$this->load->view('head',$data);
 				$this->load->view('admin/menu');
 				$this->load->view('admin/Agenda/V_tambah_agenda');
@@ -253,7 +254,7 @@ DATA agenda
 					'tanggal_agenda' => date('Y-m-d',strtotime($_POST['tanggal_agenda'])),
 					'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
 					'jam_mulai' => $_POST['jam_selesai'],
-					'status' => $_POST['status'],
+					/*'status' => $_POST['status'],*/
 					'tanggal_pengajuan' => date('Y-m-d',strtotime($_POST['tanggal_pengajuan'])),
 					'tanggal_publish' => date('Y-m-d',strtotime($_POST['tanggal_publish']))
 
@@ -294,6 +295,63 @@ DATA agenda
 				$this->admin->proses_edit_agenda($data,$id_agenda);
 				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_agenda')."';</script>";
 			}
+
+/**
+=====================================================================================================================================
+DATA agenda
+===================================================================================================================================== 
+*/
+		public function lihat_persetujuan()
+			{
+				$data['data'] = $this->admin->lihat_persetujuan();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Persetujuan/V_lihat_persetujuan');
+				$this->load->view('footer');
+			}
+
+
+				public function edit_persetujuan($id_agenda)
+			{
+
+				$data['dt'] = $this->admin->lihat_agenda($id_agenda);
+				$data['unit'] = $this->admin->lihat_unit();
+				$data['display'] = $this->admin->lihat_display();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Persetujuan/V_edit_persetujuan');
+				$this->load->view('footer');
+			}
+
+			public function proses_edit_persetujuan()
+			{
+				$data = array(
+					'id_unit' => $_POST['id_unit'], 
+					'id_display' => $_POST['id_display'], 
+					'nama_agenda' => $_POST['agenda'],
+					'tanggal_agenda' => date('Y-m-d',strtotime($_POST['tanggal_agenda'])),
+					'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
+					'jam_mulai' => $_POST['jam_selesai'],
+					'status' => $_POST['status'],
+					'tanggal_pengajuan' => date('Y-m-d',strtotime($_POST['tanggal_pengajuan'])),
+					'tanggal_publish' => date('Y-m-d',strtotime($_POST['tanggal_publish']))
+
+
+				);
+				$id_agenda = $_POST['id_agenda'];
+				$this->admin->proses_edit_agenda($data,$id_agenda);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_persetujuan')."';</script>";
+			}
+
+			public function proses_approve_persetujuan($id=null)
+			{
+				$data = array(
+					'approve' => 1, 
+				);
+			
+				$this->admin->proses_approve_persetujuan($data,$id);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_persetujuan')."';</script>";
+			}	
 
 
 public function lihat_display()
