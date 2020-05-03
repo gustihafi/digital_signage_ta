@@ -46,7 +46,7 @@
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="<?php echo base_url('admin/lihat_golongan'); ?>"><button class="btn btn-danger">Cancel</button></a>
+                  <a class="btn btn-danger" href="<?php echo base_url('admin/lihat_golongan'); ?>"> Cancel</a>
                 </div>
               </form>
             </div>

@@ -28,7 +28,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="<?php echo base_url('admin') ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
                
@@ -37,7 +37,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fas fa-database"></i>
               <p>
                 Data Master
                 <i class="right fas fa-angle-left"></i>
@@ -60,7 +60,7 @@
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url('admin/lihat_agenda') ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-calendar"></i>
               <p>
                 Agenda
                
@@ -79,17 +79,20 @@
           <li class="nav-item">
             <a href="<?php echo base_url('admin/lihat_akun') ?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
+           <li class="nav-item">
+            <a href="<?php echo base_url('admin/lihat_display') ?>" class="nav-link">
+              <i class="nav-icon fas fa-desktop"></i>
               <p>
-              Akun
-                
+              Display
               </p>
             </a>
           </li>
-           <li class="nav-item">
-            <a href="<?php echo base_url('admin/lihat_display') ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+          <li class="nav-item">
+            <a href="<?php echo base_url('admin/lihat_akun') ?>" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
               <p>
-              Display
+              Akun
+                
               </p>
             </a>
           </li>
