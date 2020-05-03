@@ -30,7 +30,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped table-responsive">
                 <thead>
                 <tr>
                   <th> No</th>
@@ -67,7 +67,13 @@
                  <td><?php echo $key['status']; ?></td>
                    <td><?php echo $key['tanggal_pengajuan']; ?></td>
                    <td><?php echo $key['tanggal_publish']; ?></td>
-                  <td><a href="<?php echo base_url('admin/edit_agenda/'.$key['id_agenda']) ?>"><button class="btn btn-primary"><i class="fas fa-edit"></i> Agenda</button></a> <a href="<?php echo base_url('admin/hapus_agenda/'.$key['id_agenda']) ?>"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a></td>
+                  <td>
+                  <a href="<?php echo base_url('admin/edit_agenda/'.$key['id_agenda']) ?>">
+                  <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Agenda</button></a> 
+                  
+                  <a href="<?php echo base_url('admin/hapus_agenda/'.$key['id_agenda']) ?>">
+                  <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                  </td>
                 </tr>
                  <?php 
                 endforeach;
