@@ -27,7 +27,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="<?php echo base_url('admin') ?>" class="nav-link">
+            <a href="<?php echo base_url('dashboard') ?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
@@ -35,31 +35,9 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Data Master
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/lihat_golongan') ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Golongan</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('admin/lihat_unit') ?>" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Unit</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+         
           <li class="nav-item">
-            <a href="<?php echo base_url('admin/lihat_agenda') ?>" class="nav-link">
+            <a href="<?php echo base_url('agenda') ?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Agenda
@@ -67,33 +45,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="<?php echo base_url('admin/lihat_persetujuan') ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Persetujuan
-               
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?php echo base_url('admin/lihat_akun') ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-              Akun
-                
-              </p>
-            </a>
-          </li>
-           <li class="nav-item">
-            <a href="<?php echo base_url('admin/lihat_display') ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-              Display
-              </p>
-            </a>
-          </li>
-          <br>
+         
           <li class="nav-item">
             <a href="<?php echo base_url('Auth/logout') ?>" onClick="return confirm('Apakah Ingin Logout?')" class="nav-link">
               <i class="nav-icon fas fa-power-off"></i>

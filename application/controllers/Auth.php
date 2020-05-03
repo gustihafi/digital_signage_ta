@@ -23,7 +23,15 @@ class Auth extends CI_Controller
 					);
 				if($row->level == 'Admin'){
 				$this->session->set_userdata($params);
-				echo "<script>window.location='".base_url('Admin')."';</script>";
+				echo "<script>window.location='".base_url('admin')."';</script>";
+				$this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">
+	                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	                <h4><i class="icon fa fa-check"></i> Success</h4>
+	                Selamat Datang Di Digital Signage Agenda berhasil Sebagai '.$row->level.
+                  '</div>');
+		} else {
+			$this->session->set_userdata($params);
+				echo "<script>window.location='".base_url('dashboard')."';</script>";
 				$this->session->set_flashdata('msg', '<div class="alert alert-success alert-dismissible">
 	                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 	                <h4><i class="icon fa fa-check"></i> Success</h4>

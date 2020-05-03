@@ -81,10 +81,7 @@
                             <label for="golongan">Jam Selesai</label>
                             <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" placeholder="Jam Selesai">
                           </div>
-                           <!-- <div class="form-group">
-                            <label for="golongan">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="Status">
-                          </div> -->
+                         
                           <div class="form-group">
                             <label for="golongan">Tanggal Pengajuan</label>
                             <input type="date" class="form-control" id="tanggal_pengajuan" name="tanggal_pengajuan" placeholder="Tanggal Pengajuan">
@@ -93,7 +90,6 @@
                             <label for="golongan"> Tanggal Publish</label>
                             <input type="date" class="form-control" id="tanggal_publish" name="tanggal_publish" placeholder="Tanggal publish">
                           </div>
-
 
                           <div class="form-check">
                             <input type="checkbox" class="form-check-input" name="persetujuan" id="persetujuan" value="1" checked="">

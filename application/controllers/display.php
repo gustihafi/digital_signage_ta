@@ -10,6 +10,12 @@ class Display extends CI_Controller
 		parent ::__construct();
 		
 	}
+	public function home()
+	{
+		$this->load->view('Display/V_display_home');# code...
+	}
+
+
 	public function display_wadir()
 	{
 		$this->load->view('Display/V_display_wadir');# code...
