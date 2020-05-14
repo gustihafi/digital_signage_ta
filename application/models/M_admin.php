@@ -228,7 +228,7 @@ DATA Persetujuan
 public function lihat_persetujuan($id_agenda='')
 	{
 		if ($id_agenda =='') {
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit,agenda.approve,agenda.persetujuan from unit join agenda on unit.id_unit=agenda.id_unit  where agenda.persetujuan = '1'")->result_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit,agenda.approve,agenda.persetujuan,display.display from unit join agenda on unit.id_unit=agenda.id_unit join display on display.id_display=agenda.id_display where agenda.persetujuan = '1'")->result_array();
 
 		}else{
 			
