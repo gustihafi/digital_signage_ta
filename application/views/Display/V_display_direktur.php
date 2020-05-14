@@ -186,7 +186,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                           </div>
                         </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0" style="height: 625px;">
 
                 <table class="table  ">
                 <marquee direction="up" scrollamount="5" align="center">
@@ -259,54 +259,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <!-- /.card-body -->
             </div>
-            <div class="row">
-                          <div class="col-md-6 col-sm-12 col-12">
-                            <div class="info-box bg-info">
-                              <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
-
-                              <div class="info-box-content">
-                                <span class="info-box-text">Bookmarks</span>
-                                <span class="info-box-number">41,410</span>
-
-                                <div class="progress">
-                                  <div class="progress-bar" style="width: 70%"></div>
-                                </div>
-                                <span class="progress-description">
-                                  70% Increase in 30 Days
-                                </span>
-                              </div>
-                              <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                          </div>
-                          <!-- /.col -->
-                          <div class="col-md-6 col-sm-12 col-12">
-                            <div class="info-box bg-warning">
-                              <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
-
-                              <div class="info-box-content">
-                                <span class="info-box-text">Events</span>
-                                <span class="info-box-number">41,410</span>
-
-                                <div class="progress">
-                                  <div class="progress-bar" style="width: 70%"></div>
-                                </div>
-                                <span class="progress-description">
-                                  70% Increase in 30 Days
-                                </span>
-                              </div>
-                              <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                          </div>
-                          </div>
+      
                   </div>
                 </div>
               </div>
             </div><!-- /.card -->
           </div>
           <!-- /.col-md-6 -->
-        </div>
+          <div class="col-md-12"> 
+            <div class="card">
+              <marquee scrollamount="5" >
+                <p> informasi berjalan</p> 
+              </marquee> 
+            </div>
+          </div>
+
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>

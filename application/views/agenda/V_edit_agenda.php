@@ -85,8 +85,8 @@
                             <label for="golongan">Jam Selesai</label>
                             <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" value="<?php echo $dt['jam_selesai']; ?>" placeholder="Jam Selesai">
                           </div>
-                            <div class="form-group">
-                          <label>Status</label>
+                            <!-- <div class="form-group"> -->
+                      <!--     <label>Status</label>
                           <select class="form-control select2" name="status" style="width: 100%;">
                             <option value="Diterima">Diterima</option>
                              <option value="Ditolak">Ditolak</option>
@@ -102,7 +102,7 @@
                             <input type="date" class="form-control" id="tanggal_publish" name="tanggal_publish" value="<?php echo $dt['tanggal_publish']; ?>" placeholder="Tanggal publish">
                           </div>
 
-
+ -->
 
                       </div>
                   </div>

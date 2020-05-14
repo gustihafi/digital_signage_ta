@@ -36,7 +36,6 @@
                   <th> No</th>
                   <th> Agenda</th>
                   <th> Unit</th>
-                   <th> Display</th>
                   <th> Tanggal agenda</th>
                   <th> Tanggal selesai</th>
                   <th> Jam Mulai</th>
@@ -59,7 +58,6 @@
                    <td><?php echo $no++; ?></td>
                   <td><?php echo $key['nama_agenda']; ?></td>
                  <td><?php echo $key['nama_unit']; ?></td>
-                 <td><?php echo $key['display']; ?></td>
                  <td><?php echo $key['tanggal_agenda']; ?></td>
                   <td><?php echo $key['tanggal_selesai']; ?></td>
                     <td><?php echo $key['jam_mulai']; ?></td>

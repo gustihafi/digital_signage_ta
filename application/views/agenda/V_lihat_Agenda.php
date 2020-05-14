@@ -43,7 +43,6 @@
                   <th> Jam Selesai</th>
                   <th> Status</th>
                   <th> Tanggal Pengajuan</th>
-                  <th> Tanggal Publish</th>
                   <th> Aksi</th>
                  
                  
@@ -59,14 +58,11 @@
                    <td><?php echo $no++; ?></td>
                   <td><?php echo $key['nama_agenda']; ?></td>
                  <td><?php echo $key['nama_unit']; ?></td>
-                 <td><?php echo $key['display']; ?></td>
                  <td><?php echo $key['tanggal_agenda']; ?></td>
                   <td><?php echo $key['tanggal_selesai']; ?></td>
                     <td><?php echo $key['jam_mulai']; ?></td>
                    <td><?php echo $key['jam_selesai']; ?></td>
-                 <td><?php echo $key['status']; ?></td>
-                   <td><?php echo $key['tanggal_pengajuan']; ?></td>
-                   <td><?php echo $key['tanggal_publish']; ?></td>
+                    <td><?php echo $key['tanggal_pengajuan']; ?></td>
                   <td><a href="<?php echo base_url('admin/edit_agenda/'.$key['id_agenda']) ?>"><button class="btn btn-primary"><i class="fas fa-edit"></i> Agenda</button></a> <a href="<?php echo base_url('admin/hapus_agenda/'.$key['id_agenda']) ?>"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a></td>
                 </tr>
                  <?php 
@@ -85,7 +81,6 @@
                   <th> Jam Selesai</th>
                   <th> Status</th>
                   <th> Tanggal Pengajuan</th>
-                  <th> Tanggal Publish</th>
                   <th> Aksi</th>
                  
                 </tr>

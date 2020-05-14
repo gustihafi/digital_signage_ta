@@ -17,11 +17,11 @@ DATA Agenda
 public function lihat_agenda($id_agenda='')
 	{
 		if ($id_agenda =='') {
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, display.display, unit.id_unit,unit.nama_unit, display.id_display from unit join agenda on unit.id_unit=agenda.id_unit left join display on display.id_display=agenda.id_display where agenda.narasumber = '".$this->session->userdata('username')."'")->result_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish,  unit.id_unit,unit.nama_unit from unit join agenda on unit.id_unit=agenda.id_unit where agenda.narasumber = '".$this->session->userdata('username')."'")->result_array();
 
 		}else{
 			
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, display.display, unit.id_unit,unit.nama_unit, display.id_display from unit join agenda on unit.id_unit=agenda.id_unit join display on display.id_display=agenda.id_display where agenda.id_agenda='$id_agenda'")->row_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish,  unit.id_unit,unit.nama_unit, from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
 		}
 
 	}

@@ -52,8 +52,8 @@
                         </div>
                          <div class="form-group">
                           <label>Display</label>
-                          <select class="form-control select2" name="id_unit" style="width: 100%;">
-                            <option selected="selected" disabled="">----Display----</option>
+                          <select class="select2bs4" multiple="multiple" data-placeholder="Pilih Display" name="id_display[]" style="width: 100%;">
+                            <option disabled="">----Display----</option>
                             <?php foreach ($display as $dt):?>
                             <option value="<?php echo $dt['id_display']; ?>"><?php echo $dt['display']; ?></option>
                           <?php endforeach; ?>
@@ -81,18 +81,7 @@
                             <label for="golongan">Jam Selesai</label>
                             <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" placeholder="Jam Selesai">
                           </div>
-                           <div class="form-group">
-                            <label for="golongan">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="Status">
-                          </div>
-                          <div class="form-group">
-                            <label for="golongan">Tanggal Pengajuan</label>
-                            <input type="date" class="form-control" id="tanggal_pengajuan" name="tanggal_pengajuan" placeholder="Tanggal Pengajuan">
-                          </div>
-                          <div class="form-group">
-                            <label for="golongan"> Tanggal Publish</label>
-                            <input type="date" class="form-control" id="tanggal_publish" name="tanggal_publish" placeholder="Tanggal publish">
-                          </div>
+                          
 
 
 
