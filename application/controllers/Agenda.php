@@ -56,11 +56,8 @@ DATA agenda
 					'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
 					'jam_mulai' => $_POST['jam_mulai'],
 					'jam_selesai' => $_POST['jam_selesai'],
-					'persetujuan' => $_POST['persetujuan'],
-					/*'status' => $_POST['status'],*/
-					'tanggal_pengajuan' => date('Y-m-d',strtotime($_POST['tanggal_pengajuan'])),
-					'tanggal_publish' => date('Y-m-d',strtotime($_POST['tanggal_publish'])),
-					'id_display' => $_POST['id_display'],
+					'status' => 'proses',
+					'tanggal_pengajuan' => date('Y-m-d'),
 					'narasumber' => $this->session->userdata('username')
 
 				);

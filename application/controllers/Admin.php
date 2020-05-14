@@ -1,3 +1,6 @@
+
+
+
 <?php 	
 
 		/**
@@ -196,19 +199,14 @@ DATA akun
 
 			public function proses_edit_akun()
 			{
-				if(!empty($_POST['pwd_baru'])){
-					$data = array(
-						'username' => $_POST['username'], 
-						'password' => md5($_POST['pwd_baru']),
-						'level' => $_POST['level'] 
-					);
-				}else{
-					$data = array(
-						'username' => $_POST['username'], 
-						'password' => $_POST['pwd_lama'],
-						'level' => $_POST['level'] 
-					);
-				}
+				$data = array(
+					'username' => $_POST['username'], 
+					'password' => $_POST['password'],
+					'id_unit' => $_POST['id_unit'],
+					'level' => $_POST['level']
+
+
+				);
 				$id_akun = $_POST['id_akun'];
 				$this->admin->proses_edit_akun($data,$id_akun);
 				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_akun')."';</script>";
@@ -247,20 +245,8 @@ DATA agenda
 
 			public function proses_tambah_agenda()
 			{
-				$data = array(
-					'id_agenda' => '' ,
-					'id_unit' => $_POST['id_unit'], 
-					'nama_agenda' => $_POST['agenda'],
-					'tanggal_agenda' => date('Y-m-d',strtotime($_POST['tanggal_agenda'])),
-					'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
-					'jam_mulai' => $_POST['jam_selesai'],
-					/*'status' => $_POST['status'],*/
-					'tanggal_pengajuan' => date('Y-m-d',strtotime($_POST['tanggal_pengajuan'])),
-					'tanggal_publish' => date('Y-m-d',strtotime($_POST['tanggal_publish']))
-
-				);
-
-				$this->admin->proses_tambah_agenda($data);
+				
+				$this->admin->proses_tambah_agenda();
 				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_agenda')."';</script>";
 			}
 
@@ -280,14 +266,12 @@ DATA agenda
 			{
 				$data = array(
 					'id_unit' => $_POST['id_unit'], 
-					'id_display' => $_POST['id_display'], 
+				
 					'nama_agenda' => $_POST['agenda'],
 					'tanggal_agenda' => date('Y-m-d',strtotime($_POST['tanggal_agenda'])),
 					'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
-					'jam_mulai' => $_POST['jam_selesai'],
-					'status' => $_POST['status'],
-					'tanggal_pengajuan' => date('Y-m-d',strtotime($_POST['tanggal_pengajuan'])),
-					'tanggal_publish' => date('Y-m-d',strtotime($_POST['tanggal_publish']))
+					'jam_mulai' => $_POST['jam_selesai']
+					
 
 
 				);

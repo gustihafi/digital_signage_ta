@@ -100,24 +100,62 @@ DATA Agenda
 public function lihat_agenda($id_agenda='')
 	{
 		if ($id_agenda =='') {
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, display.display, unit.id_unit,unit.nama_unit, display.id_display from unit join agenda on unit.id_unit=agenda.id_unit left join display on display.id_display=agenda.id_display")->result_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish,  unit.id_unit,unit.nama_unit from unit join agenda on unit.id_unit=agenda.id_unit ")->result_array();
 
 		}else{
 			
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, display.display, unit.id_unit,unit.nama_unit, display.id_display,agenda.persetujuan from unit join agenda on unit.id_unit=agenda.id_unit join display on display.id_display=agenda.id_display where agenda.id_agenda='$id_agenda'")->row_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit, agenda.persetujuan from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
 		}
 
 	}
 
-	public function proses_tambah_agenda($data)
+	public function proses_tambah_agenda()
 	{
+		
+		$data = array(
+					'id_agenda' => '' ,
+					'id_unit' => $_POST['id_unit'], 
+					'nama_agenda' => $_POST['agenda'],
+					'tanggal_agenda' => date('Y-m-d',strtotime($_POST['tanggal_agenda'])),
+					'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
+					'jam_mulai' => $_POST['jam_selesai'],
+					'status' => 'Publish',
+					'tanggal_pengajuan' => date('Y-m-d')
+
+				);
 		$this->db->insert('agenda',$data);
+		$id_agenda = $this->db->insert_id();
+		$jum=count($_POST['id_display']); 
+
+		for ($i=0; $i < $jum ; $i++) { 
+			$dt = array(
+				'id_display_agenda' => '' ,
+				'id_agenda'=>$id_agenda,
+				'id_display' => $_POST['id_display'][$i]
+			);
+
+			$this->db->insert('display_agenda',$dt);
+		}
+
 	}
 
 	public function proses_edit_agenda($data,$id_agenda)
 	{
 		$this->db->where('id_agenda',$id_agenda);
 		$this->db->update('agenda',$data);
+		$this->db->where('id_agenda',$id_agenda);
+		$this->db->delete('display_agenda');
+		$jum=count($_POST['id_display']); 
+
+		for ($i=0; $i < $jum ; $i++) { 
+			$dt = array(
+				'id_display_agenda' => '' ,
+				'id_agenda'=>$id_agenda,
+				'id_display' => $_POST['id_display'][$i]
+			);
+
+			$this->db->insert('display_agenda',$dt);
+		}
 	}
 
 	public function proses_hapus_akun($id){
@@ -190,11 +228,11 @@ DATA Persetujuan
 public function lihat_persetujuan($id_agenda='')
 	{
 		if ($id_agenda =='') {
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, display.display, unit.id_unit,unit.nama_unit, display.id_display,agenda.approve,agenda.persetujuan from unit join agenda on unit.id_unit=agenda.id_unit left join display on display.id_display=agenda.id_display where agenda.persetujuan = '1'")->result_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit,agenda.approve,agenda.persetujuan from unit join agenda on unit.id_unit=agenda.id_unit  where agenda.persetujuan = '1'")->result_array();
 
 		}else{
 			
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, display.display, unit.id_unit,unit.nama_unit, display.id_display,agenda.persetujuan from unit join agenda on unit.id_unit=agenda.id_unit join display on display.id_display=agenda.id_display where agenda.id_agenda='$id_agenda'")->row_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit, agenda.persetujuan from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
 		}
 
 	}
