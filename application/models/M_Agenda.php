@@ -21,28 +21,67 @@ public function lihat_agenda($id_agenda='')
 
 		}else{
 			
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish,  unit.id_unit,unit.nama_unit, from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish,  unit.id_unit,unit.nama_unit from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
 		}
 
 	}
 
-	public function proses_tambah_agenda($data)
+	public function proses_tambah_agenda()
 	{
+		
+		$data = array(
+					'id_agenda' => '' ,
+					'id_unit' => $_POST['id_unit'], 
+					'nama_agenda' => $_POST['agenda'],
+					'tanggal_agenda' => date('Y-m-d',strtotime($_POST['tanggal_agenda'])),
+					'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
+					'jam_mulai' => $_POST['jam_selesai'],
+					'status' => 'proses',
+					'tanggal_pengajuan' => date('Y-m-d'),
+					'narasumber' => $this->session->username('username'),
+
+				);
 		$this->db->insert('agenda',$data);
+		$id_agenda = $this->db->insert_id();
+		$jum=count($_POST['id_display']); 
+
+		for ($i=0; $i < $jum ; $i++) { 
+			$dt = array(
+				'id_display_agenda' => '' ,
+				'id_agenda'=>$id_agenda,
+				'id_display' => $_POST['id_display'][$i]
+			);
+
+			$this->db->insert('display_agenda',$dt);
+		}
+
 	}
 
 	public function proses_edit_agenda($data,$id_agenda)
 	{
 		$this->db->where('id_agenda',$id_agenda);
 		$this->db->update('agenda',$data);
+		$this->db->where('id_agenda',$id_agenda);
+		$this->db->delete('display_agenda');
+		$jum=count($_POST['id_display']); 
+
+		for ($i=0; $i < $jum ; $i++) { 
+			$dt = array(
+				'id_display_agenda' => '' ,
+				'id_agenda'=>$id_agenda,
+				'id_display' => $_POST['id_display'][$i]
+			);
+
+			$this->db->insert('display_agenda',$dt);
+		}
 	}
 
-	public function proses_hapus_akun($id){
+	public function proses_hapus_agenda($id){
 		$where = array(
-			'id_akun' => $id
+			'id_agenda' => $id
 			);
 		$this->db->where($where);
-		$this->db->delete('akun');
+		$this->db->delete('agenda');
 	}
 
 

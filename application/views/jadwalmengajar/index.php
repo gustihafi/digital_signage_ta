@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Agenda</h1>
+            <h1>Data jadwalmengajar</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Tabel Agenda/li>
+              <li class="breadcrumb-item active">Tabel jadwalmengajar/li>
             </ol>
           </div>
         </div>
@@ -23,10 +23,10 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Data Agenda</h3>
+              <h3 class="card-title">Data jadwalmengajar</h3>
             </div>
             <div class="card-header">
-              <a href="<?php echo base_url('agenda/tambah_agenda') ?>"><button class="btn btn-primary"><i class="fa fa-plus"></i> Agenda</button></a>
+              <a href="<?php echo base_url('jadwalmengajar/tambah_jadwalmengajar') ?>"><button class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</button></a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -34,16 +34,14 @@
                 <thead>
                 <tr>
                   <th> No</th>
-                  <th> Agenda</th>
-                  <th> Unit</th>
-                  <th> Tanggal agenda</th>
-                  <th> Tanggal selesai</th>
-                  <th> Jam Mulai</th>
-                  <th> Jam Selesai</th>
-                  <th> Status</th>
-                  <th> Tanggal Pengajuan</th>
+                  <th> Prodi</th>
+                   <th> Kelas</th>
+                   <th> Mata Kuliah</th>
+                   <th> Waktu Mulai</th>
+                   <th> Waktu Selesai</th>
+                   <th> Tanggal</th>
                    <th> Aksi</th>
-             
+                    
                  
                  
                 </tr>
@@ -56,19 +54,18 @@
                 ?>
                 <tr>
                    <td><?php echo $no++; ?></td>
-                  <td><?php echo $key['nama_agenda']; ?></td>
-                 <td><?php echo $key['nama_unit']; ?></td>
-                 <td><?php echo $key['tanggal_agenda']; ?></td>
-                  <td><?php echo $key['tanggal_selesai']; ?></td>
-                    <td><?php echo $key['jam_mulai']; ?></td>
-                   <td><?php echo $key['jam_selesai']; ?></td>
-                 <td><?php echo $key['status']; ?></td>
-                   <td><?php echo $key['tanggal_pengajuan']; ?></td>
-                    <td>
-                  <a href="<?php echo base_url('agenda/edit_agenda/'.$key['id_agenda']) ?>">
-                  <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Agenda</button></a> 
+                  <td><?php echo prodi($key['prodi']); ?></td>
+                 <td><?php echo kelas($key['kelas']); ?></td>
+                 <td><?php echo matakuliah($key['matakuliah']); ?></td>
+                 <td><?php echo $key['waktu_mulai']; ?></td>
+                 <td><?php echo $key['waktu_selesai']; ?></td>
+                 <td><?php echo $key['tanggal']; ?></td>
                   
-                  <a href="<?php echo base_url('agenda/hapus_agenda/'.$key['id_agenda']) ?>">
+                    <td>
+                  <a href="<?php echo base_url('jadwalmengajar/edit_jadwalmengajar/'.$key['id_jadwal']) ?>">
+                  <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</button></a> 
+                  
+                  <a href="<?php echo base_url('jadwalmengajar/hapus_jadwalmengajar/'.$key['id_jadwal']) ?>">
                   <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
                   </td>
                 </tr>
@@ -80,15 +77,13 @@
                <tfoot>
                 <tr>
                   <th> No</th>
-                  <th> Agenda</th>
-                  <th> Unit</th>
-                  <th> Tanggal agenda</th>
-                  <th> Tanggal selesai</th>
-                  <th> Jam Mulai</th>
-                  <th> Jam Selesai</th>
-                  <th> Status</th>
-                  <th> Tanggal Pengajuan</th>
-                  <th> Aksi</th>
+                  <th> Prodi</th>
+                   <th> Kelas</th>
+                   <th> Mata Kuliah</th>
+                   <th> Waktu Mulai</th>
+                   <th> Waktu Selesai</th>
+                   <th> Tanggal</th>
+                   <th> Aksi</th>
                  
                 </tr>
                 </tfoot>

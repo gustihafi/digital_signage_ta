@@ -12,6 +12,7 @@
 			function __construct()
 			{
 				parent::__construct();
+				$this->load->helper('my_helper');
 				$this->load->model('M_admin','admin');
 				if($this->session->userdata('status') != 'login'){
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible">
@@ -280,6 +281,11 @@ DATA agenda
 				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_agenda')."';</script>";
 			}
 
+			public function hapus_agenda($id){
+				$this->admin->proses_hapus_agenda($id);
+				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('admin/lihat_agenda')."';</script>";
+			}
+
 /**
 =====================================================================================================================================
 DATA agenda
@@ -390,8 +396,252 @@ public function lihat_display()
 				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('admin/lihat_display')."';</script>";
 			}
 
-		}
+		
+
+
+		/**
+=====================================================================================================================================
+DATA INformasi
+===================================================================================================================================== 
+*/
+			public function lihat_informasi()
+			{
+				$data['data'] = $this->admin->lihat_informasi();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Informasi/V_lihat_informasi');
+				$this->load->view('footer');
+			}
+
+			public function tambah_informasi()
+			{
+				$this->load->view('head');
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Informasi/V_tambah_informasi');
+				$this->load->view('footer');
+			}
+
+
+
+			public function proses_tambah_informasi()
+			{
+				$data = array(
+					'id_informasi' => '' ,
+					'informasi' => $_POST['informasi'] 
+				);
+
+				$this->admin->proses_tambah_informasi($data);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_informasi')."';</script>";
+			}
+
+				public function edit_informasi($id_informasi)
+			{
+
+				$data['dt'] = $this->admin->lihat_informasi($id_informasi);
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Informasi/V_edit_informasi');
+				$this->load->view('footer');
+			}
+
+			public function proses_edit_informasi()
+			{
+				$data = array(
+					'informasi' => $_POST['informasi'] 
+				);
+				$id_informasi = $_POST['id_informasi'];
+				$this->admin->proses_edit_informasi($data,$id_informasi);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_informasi')."';</script>";
+			}
+			public function hapus_informasi($id){
+				$this->admin->proses_hapus_informasi($id);
+				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('admin/lihat_informasi')."';</script>";
+			}
+
+		/**
+=====================================================================================================================================
+DATA Prodi
+===================================================================================================================================== 
+*/
+			public function lihat_prodi()
+			{
+				$data['data'] = $this->admin->lihat_prodi();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Prodi/V_lihat_prodi');
+				$this->load->view('footer');
+			}
+
+			public function tambah_prodi()
+			{
+				$this->load->view('head');
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Prodi/V_tambah_prodi');
+				$this->load->view('footer');
+			}
+
+
+
+			public function proses_tambah_prodi()
+			{
+				$data = array(
+					'id_prodi' => '' ,
+					'prodi' => $_POST['prodi'] 
+				);
+
+				$this->admin->proses_tambah_prodi($data);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_prodi')."';</script>";
+			}
+
+				public function edit_prodi($id_prodi)
+			{
+
+				$data['dt'] = $this->admin->lihat_prodi($id_prodi);
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Prodi/V_edit_prodi');
+				$this->load->view('footer');
+			}
+
+			public function proses_edit_prodi()
+			{
+				$data = array(
+					'prodi' => $_POST['prodi'] 
+				);
+				$id_prodi = $_POST['id_prodi'];
+				$this->admin->proses_edit_prodi($data,$id_prodi);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_prodi')."';</script>";
+			}
+			public function hapus_prodi($id){
+				$this->admin->proses_hapus_prodi($id);
+				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('admin/lihat_prodi')."';</script>";
+			}
+
+		/**
+=====================================================================================================================================
+DATA Kelas
+===================================================================================================================================== 
+*/
+			public function lihat_kelas()
+			{
+				$data['data'] = $this->admin->lihat_kelas();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Kelas/V_lihat_kelas');
+				$this->load->view('footer');
+			}
+
+			public function tambah_kelas()
+			{
+				$data['prodi'] = $this->admin->get_prodi();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Kelas/V_tambah_kelas');
+				$this->load->view('footer');
+			}
+
+
+
+			public function proses_tambah_kelas()
+			{
+				$data = array(
+					'id_kelas' => '' ,
+					'kelas' => $_POST['kelas'] ,
+					'prodi' => $_POST['prodi'] ,
+				);
+
+				$this->admin->proses_tambah_kelas($data);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_kelas')."';</script>";
+			}
+
+				public function edit_kelas($id_kelas)
+			{
+
+				$data['dt'] = $this->admin->lihat_kelas($id_kelas);
+				$data['prodi'] = $this->admin->get_prodi();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Kelas/V_edit_kelas');
+				$this->load->view('footer');
+			}
+
+			public function proses_edit_kelas()
+			{
+				$data = array(
+					'kelas' => $_POST['kelas'], 
+					'prodi' => $_POST['prodi'], 
+				);
+				$id_kelas = $_POST['id_kelas'];
+				$this->admin->proses_edit_kelas($data,$id_kelas);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_kelas')."';</script>";
+			}
+			public function hapus_kelas($id){
+				$this->admin->proses_hapus_kelas($id);
+				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('admin/lihat_kelas')."';</script>";
+			}
+
+		/**
+=====================================================================================================================================
+DATA matakuliah
+===================================================================================================================================== 
+*/
+			public function lihat_matakuliah()
+			{
+				$data['data'] = $this->admin->lihat_matakuliah();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/matakuliah/V_lihat_matakuliah');
+				$this->load->view('footer');
+			}
+
+			public function tambah_matakuliah()
+			{
+				$data['prodi'] = $this->admin->get_prodi();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Matakuliah/V_tambah_matakuliah');
+				$this->load->view('footer');
+			}
+
+
+
+			public function proses_tambah_matakuliah()
+			{
+				$data = array(
+					'matakuliah' => $_POST['matakuliah'],
+					'prodi' => $_POST['prodi'], 
+				);
+
+				$this->admin->proses_tambah_matakuliah($data);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_matakuliah')."';</script>";
+			}
+
+				public function edit_matakuliah($id_matakuliah)
+			{
+
+				$data['dt'] = $this->admin->lihat_matakuliah($id_matakuliah);
+				$data['prodi'] = $this->admin->get_prodi();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Matakuliah/V_edit_matakuliah');
+				$this->load->view('footer');
+			}
+
+			public function proses_edit_matakuliah()
+			{
+				$data = array(
+					'matakuliah' => $_POST['matakuliah'],
+					'prodi' => $_POST['prodi'],
+				);
+				$id_matakuliah = $_POST['id_matakuliah'];
+				$this->admin->proses_edit_matakuliah($data,$id_matakuliah);
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_matakuliah')."';</script>";
+			}
+			public function hapus_matakuliah($id){
+				$this->admin->proses_hapus_matakuliah($id);
+				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('admin/lihat_matakuliah')."';</script>";
+			}
 
 	
-		
+		}
  ?>
