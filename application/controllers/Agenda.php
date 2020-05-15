@@ -48,22 +48,44 @@ DATA agenda
 
 			public function proses_tambah_agenda()
 			{
+				
+				$this->agenda->proses_tambah_agenda();
+				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('agenda')."';</script>";
+			}
+
+				public function edit_agenda($id_agenda)
+			{
+
+				$data['dt'] = $this->agenda->lihat_agenda($id_agenda);
+				$data['unit'] = $this->agenda->lihat_unit();
+				$data['display'] = $this->agenda->lihat_display();
+				$this->load->view('head',$data);
+				$this->load->view('agenda/menu');
+				$this->load->view('agenda/V_edit_agenda');
+				$this->load->view('footer');
+			}
+
+			public function proses_edit_agenda()
+			{
 				$data = array(
-					'id_agenda' => '' ,
 					'id_unit' => $_POST['id_unit'], 
+				
 					'nama_agenda' => $_POST['agenda'],
 					'tanggal_agenda' => date('Y-m-d',strtotime($_POST['tanggal_agenda'])),
 					'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
-					'jam_mulai' => $_POST['jam_mulai'],
-					'jam_selesai' => $_POST['jam_selesai'],
-					'status' => 'proses',
-					'tanggal_pengajuan' => date('Y-m-d'),
-					'narasumber' => $this->session->userdata('username')
+					'jam_mulai' => $_POST['jam_selesai']
+					
+
 
 				);
-
-				$this->agenda->proses_tambah_agenda($data);
+				$id_agenda = $_POST['id_agenda'];
+				$this->agenda->proses_edit_agenda($data,$id_agenda);
 				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('agenda')."';</script>";
+			}
+
+			public function hapus_agenda($id){
+				$this->agenda->proses_hapus_agenda($id);
+				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('agenda')."';</script>";
 			}
 
 			

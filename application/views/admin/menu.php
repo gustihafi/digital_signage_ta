@@ -56,7 +56,33 @@
                   <p>Unit</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('admin/lihat_prodi') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Prodi</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('admin/lihat_kelas') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kelas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('admin/lihat_matakuliah') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Mata Kuliah</p>
+                </a>
+              </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('admin/lihat_informasi') ?>" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Informasi
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url('admin/lihat_agenda') ?>" class="nav-link">

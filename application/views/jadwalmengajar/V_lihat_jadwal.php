@@ -26,7 +26,7 @@
               <h3 class="card-title">Data Agenda</h3>
             </div>
             <div class="card-header">
-              <a href="<?php echo base_url('agenda/tambah_agenda') ?>"><button class="btn btn-primary"><i class="fa fa-plus"></i> Agenda</button></a>
+              <a href="<?php echo base_url('admin/tambah_agenda') ?>"><button class="btn btn-primary"><i class="fa fa-plus"></i> Agenda</button></a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -36,14 +36,14 @@
                   <th> No</th>
                   <th> Agenda</th>
                   <th> Unit</th>
+                   <th> Display</th>
                   <th> Tanggal agenda</th>
                   <th> Tanggal selesai</th>
                   <th> Jam Mulai</th>
                   <th> Jam Selesai</th>
                   <th> Status</th>
                   <th> Tanggal Pengajuan</th>
-                   <th> Aksi</th>
-             
+                  <th> Aksi</th>
                  
                  
                 </tr>
@@ -62,15 +62,8 @@
                   <td><?php echo $key['tanggal_selesai']; ?></td>
                     <td><?php echo $key['jam_mulai']; ?></td>
                    <td><?php echo $key['jam_selesai']; ?></td>
-                 <td><?php echo $key['status']; ?></td>
-                   <td><?php echo $key['tanggal_pengajuan']; ?></td>
-                    <td>
-                  <a href="<?php echo base_url('agenda/edit_agenda/'.$key['id_agenda']) ?>">
-                  <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Agenda</button></a> 
-                  
-                  <a href="<?php echo base_url('agenda/hapus_agenda/'.$key['id_agenda']) ?>">
-                  <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
-                  </td>
+                    <td><?php echo $key['tanggal_pengajuan']; ?></td>
+                  <td><a href="<?php echo base_url('admin/edit_agenda/'.$key['id_agenda']) ?>"><button class="btn btn-primary"><i class="fas fa-edit"></i> Agenda</button></a> <a href="<?php echo base_url('admin/hapus_agenda/'.$key['id_agenda']) ?>"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a></td>
                 </tr>
                  <?php 
                 endforeach;
@@ -79,7 +72,7 @@
                 </tbody>
                <tfoot>
                 <tr>
-                  <th> No</th>
+                 <th> No</th>
                   <th> Agenda</th>
                   <th> Unit</th>
                   <th> Tanggal agenda</th>

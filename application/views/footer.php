@@ -41,6 +41,83 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url() ?>/asset/dist/js/demo.js"></script>
 <!-- Page script -->
+<script type="text/javascript">
+    $("#prodi").change(function(){
+     var prodi = $("#prodi").val();
+      if(prodi){
+        $.ajax({
+            type: "POST",
+            async: false,
+            url : "<?php echo site_url('jadwalmengajar/get_kelas')?>",
+            data: {
+               'prodi': prodi,
+               '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+            },
+            success: function(msg){
+                $('#kelas').html(msg);
+            }
+        });
+      }
+    });
+
+     $("#prodi").change(function(){
+     var prodi = $("#prodi").val();
+      if(prodi){
+        $.ajax({
+            type: "POST",
+            async: false,
+            url : "<?php echo site_url('jadwalmengajar/get_matakuliah')?>",
+            data: {
+               'prodi': prodi,
+               '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+            },
+            success: function(msg){
+                $('#matakuliah').html(msg);
+            }
+        });
+      }
+    });
+
+     $("#prodix").ready(function(){
+    var prodix = $("#prodix").val();
+    var idx = $("#idx").val();
+  if(prodix){
+    $.ajax({
+        type: "POST",
+        async: false,
+        url : "<?php echo site_url('jadwalmengajar/get_kelas')?>",
+        data: {
+           'prodi': prodix,
+                   'id': idx,
+           '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+        },
+        success: function(msg){
+            $('#kelas').html(msg);
+        }
+    });
+  }
+});
+
+     $("#prodix").ready(function(){
+    var prodix = $("#prodix").val();
+    var idx = $("#idx").val();
+  if(prodix){
+    $.ajax({
+        type: "POST",
+        async: false,
+        url : "<?php echo site_url('jadwalmengajar/get_matakuliah')?>",
+        data: {
+           'prodi': prodix,
+                   'id': idx,
+           '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+        },
+        success: function(msg){
+            $('#matakuliah').html(msg);
+        }
+    });
+  }
+});
+  </script>
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -133,6 +210,9 @@
       }
     });
   });
+
+
+
 </script>
 </body>
 </html>

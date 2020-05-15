@@ -158,6 +158,14 @@ public function lihat_agenda($id_agenda='')
 		}
 	}
 
+	public function proses_hapus_agenda($id){
+		$where = array(
+			'id_agenda' => $id
+			);
+		$this->db->where($where);
+		$this->db->delete('agenda');
+	}
+
 	public function proses_hapus_akun($id){
 		$where = array(
 			'id_akun' => $id
@@ -250,7 +258,150 @@ public function lihat_persetujuan($id_agenda='')
 		$this->db->where('id_agenda',$id_agenda);
 		$this->db->update('agenda',$data);
 	}
+
+
+	/**
+=====================================================================================================================================
+DATA Informasi
+===================================================================================================================================== 
+*/
+	public function lihat_informasi($id_informasi='')
+	{
+		if ($id_informasi =='') {
+			return $this->db->get('informasi')->result_array();
+		}else{
+			$this->db->where('id_informasi',$id_informasi);
+			return $this->db->get('informasi')->row_array();
+		}
+	}
+	public function proses_tambah_informasi($data)
+	{
+		$this->db->insert('informasi',$data);
+	}
+	public function proses_edit_informasi($data,$id_informasi)
+	{
+		$this->db->where('id_informasi',$id_informasi);
+		$this->db->update('informasi',$data);
+	}
+	public function proses_hapus_informasi($id){
+		$where = array(
+			'id_informasi' => $id
+			);
+		$this->db->where($where);
+		$this->db->delete('informasi');
+	}
+
+
+	/**
+=====================================================================================================================================
+DATA Prodi
+===================================================================================================================================== 
+*/
+	public function lihat_prodi($id_prodi='')
+	{
+		if ($id_prodi =='') {
+			return $this->db->get('prodi')->result_array();
+		}else{
+			$this->db->where('id_prodi',$id_prodi);
+			return $this->db->get('prodi')->row_array();
+		}
+	}
+	public function proses_tambah_prodi($data)
+	{
+		$this->db->insert('prodi',$data);
+	}
+	public function proses_edit_prodi($data,$id_prodi)
+	{
+		$this->db->where('id_prodi',$id_prodi);
+		$this->db->update('prodi',$data);
+	}
+	public function proses_hapus_prodi($id){
+		$where = array(
+			'id_prodi' => $id
+			);
+		$this->db->where($where);
+		$this->db->delete('prodi');
+	}
+
+
+	/**
+=====================================================================================================================================
+DATA matakuliah
+===================================================================================================================================== 
+*/
+	public function lihat_matakuliah($id_matakuliah='')
+	{
+		if ($id_matakuliah =='') {
+			return $this->db->get('matakuliah')->result_array();
+		}else{
+			$this->db->where('id_matakuliah',$id_matakuliah);
+			return $this->db->get('matakuliah')->row_array();
+		}
+	}
+	public function proses_tambah_matakuliah($data)
+	{
+		$this->db->insert('matakuliah',$data);
+	}
+	public function proses_edit_matakuliah($data,$id_matakuliah)
+	{
+		$this->db->where('id_matakuliah',$id_matakuliah);
+		$this->db->update('matakuliah',$data);
+	}
+	public function proses_hapus_matakuliah($id){
+		$where = array(
+			'id_matakuliah' => $id
+			);
+		$this->db->where($where);
+		$this->db->delete('matakuliah');
+	}
+
+
+	/**
+=====================================================================================================================================
+DATA kelas
+===================================================================================================================================== 
+*/
+	public function lihat_kelas($id_kelas='')
+	{
+		if ($id_kelas =='') {
+			return $this->db->get('kelas')->result_array();
+		}else{
+			$this->db->where('id_kelas',$id_kelas);
+			return $this->db->get('kelas')->row_array();
+		}
+	}
+	public function proses_tambah_kelas($data)
+	{
+		$this->db->insert('kelas',$data);
+	}
+	public function proses_edit_kelas($data,$id_kelas)
+	{
+		$this->db->where('id_kelas',$id_kelas);
+		$this->db->update('kelas',$data);
+	}
+	public function proses_hapus_kelas($id){
+		$where = array(
+			'id_kelas' => $id
+			);
+		$this->db->where($where);
+		$this->db->delete('kelas');
+	}
 	
+
+	public function get_prodi()
+    {
+        $query = $this->db->order_by('id_prodi', 'ASC')->get('prodi');
+        if($query->num_rows() > 0){
+            $dropdown[''] = 'Pilih Prodi';
+            foreach ($query->result() as $row)
+            {
+                $dropdown[$row->id_prodi] = $row->prodi;
+            }
+        }else{
+            $dropdown[''] = 'Belum Ada Data';
+        }
+        return $dropdown;
+    }
 
 	
 }
