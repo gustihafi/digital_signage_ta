@@ -227,6 +227,8 @@ DATA agenda
 */
 		public function lihat_agenda()
 			{
+				$data['display'] = $this->admin->lihat_display();
+				$data['relasi'] = $this->admin->lihat_persetujuan();
 				$data['data'] = $this->admin->lihat_agenda();
 				$this->load->view('head',$data);
 				$this->load->view('admin/menu');
@@ -298,13 +300,12 @@ DATA agenda
 				$this->load->view('admin/menu');
 				$this->load->view('admin/Persetujuan/V_lihat_persetujuan');
 				$this->load->view('footer');
-			}
-
+			}			
 
 				public function edit_persetujuan($id_agenda)
 			{
 
-				$data['dt'] = $this->admin->lihat_agenda($id_agenda);
+				$data['dt'] = $this->admin->lihat_persetujuan($id_agenda);
 				$data['unit'] = $this->admin->lihat_unit();
 				$data['display'] = $this->admin->lihat_display();
 				$this->load->view('head',$data);

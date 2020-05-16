@@ -71,28 +71,46 @@
                             <label for="golongan">Jam Mulai</label>
                             <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" placeholder="Jam Mulai">
                           </div>
-
-
                       </div>
-                      <div class="col-md-6">
 
-                          
+                      <div class="col-md-6">
+                         
                            <div class="form-group">
                             <label for="golongan">Jam Selesai</label>
                             <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" placeholder="Jam Selesai">
                           </div>
-                          
 
-
-
+                          <div class="form-group">
+                            <label for="golongan">Narasumber</label>
+                            <input type="text" class="form-control" id="narasumber" name="narasumber" placeholder="Narasumber">
+                          </div>
+                        
+                          <div class="form-group row">                                       
+                            <label class="col-sm-3 control-label text-sm-left pt-2">Minta Persetujuan </label>
+                              <div class="col-sm-6" style="margin:10px;">
+                              <label class="switch">
+                                <input type="checkbox" name="approve" />
+                                <span class="slider round">
+                                </span>
+                              </div>
+                              </label>
+                              *Jika ingin minta persetujuan 
+                          </div>
+                          <!-- <div class="form-group">
+                            <div class="switch switch-sm switch-success">
+                              <input type="checkbox" name="pwd_lama" data-plugin-ios-switch />
+                            </div>
+                          </div> -->
+ 
                       </div>
+
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="<?php echo base_url('admin/lihat_agenda'); ?>"><button class="btn btn-danger">Cancel</button></a>
+                  <a class="btn btn-danger" href="<?php echo base_url('admin/lihat_agenda'); ?>">Cancel</a>
                 </div>
               </form>
             </div>

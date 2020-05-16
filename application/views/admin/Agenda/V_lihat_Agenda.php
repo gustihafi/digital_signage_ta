@@ -67,13 +67,16 @@
                    <td><?php echo $key['tanggal_publish']; ?></td>
                   <td>
                   <a href="<?php echo base_url('admin/edit_agenda/'.$key['id_agenda']) ?>">
-                  <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Agenda</button></a> 
+                  <button style="margin:5px;" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Agenda</button></a> 
                   
                   <a href="<?php echo base_url('admin/hapus_agenda/'.$key['id_agenda']) ?>">
-                  <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                  <button style="margin:5px;" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+
+                  <button style="margin:5px;" data-toggle="modal" data-target="#edit<?= $key['id_agenda']; ?>" class="btn btn-sm btn-warning"><i class="fas fa-eye"></i> Display</button>
                   </td>
                 </tr>
                  <?php 
+                 include('pilih_display.php');
                 endforeach;
                 ?>
            

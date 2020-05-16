@@ -55,25 +55,23 @@
                     
                 ?>
                 <tr>
-                   <td><?php echo $no++; ?></td>
+                  <td><?php echo $no++; ?></td>
                   <td><?php echo $key['nama_agenda']; ?></td>
-                 <td><?php echo $key['nama_unit']; ?></td>
-                 <td><?php echo $key['display']; ?></td>
-                 <td><?php echo $key['tanggal_agenda']; ?></td>
+                  <td><?php echo $key['nama_unit']; ?></td>
+                  <td><?php echo $key['display']; ?></td>
+                  <td><?php echo $key['tanggal_agenda']; ?></td>
                   <td><?php echo $key['tanggal_selesai']; ?></td>
-                    <td><?php echo $key['jam_mulai']; ?></td>
-                   <td><?php echo $key['jam_selesai']; ?></td>
+                  <td><?php echo $key['jam_mulai']; ?></td>
+                  <td><?php echo $key['jam_selesai']; ?></td>
                  
-                 <td><?php echo $key['approve'] ? 'Sudah Di Approve' : 'Belum di Approve'; ?></td>
-                   <td><?php echo $key['tanggal_pengajuan']; ?></td>
-                   <td><?php echo $key['tanggal_publish']; ?></td>
+                  <td><?php echo $key['status']; ?></td>
+                  <td><?php echo $key['tanggal_pengajuan']; ?></td>
+                  <td><?php echo $key['tanggal_publish']; ?></td>
                   <td>
-                  <a href="<?php echo base_url('admin/edit_persetujuan/'.$key['id_agenda']) ?>"><button class="btn btn-primary"><i class="fas fa-edit"></i> Agenda</button></a>
-                  <?php if ($key['approve'] == '1') {
-                    
-                  } else { ?> 
-                  <a href="<?php echo base_url('admin/proses_approve_persetujuan/'.$key['id_agenda']) ?>"><button class="btn btn-success"><i class="fas fa-check"></i> Approve</button></a></td>
-                  <?php } ?>
+                  <button style="margin:5px;" class="btn btn-sm btn-primary update-record"><i class="fas fa-edit"></i> Publish</button>
+                  <?php if ($key['status'] == 'Belum Approve') { ?>
+                    <a href="<?php echo base_url('admin/proses_approve_persetujuan/'.$key['id_persetujuan']) ?>"><button style="margin:5px;" class="btn btn-sm btn-success"><i class="fas fa-check"></i> Approve</button></a></td>
+                  <?php } ?> 
                 </tr>
                  <?php 
                 endforeach;
@@ -98,6 +96,7 @@
                 </tfoot>
               </table>
             </div>
+            <?php include('V_edit_persetujuan'); ?>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->

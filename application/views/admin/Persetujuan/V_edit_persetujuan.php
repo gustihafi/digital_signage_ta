@@ -1,125 +1,139 @@
-<!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Edit Agenda</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Edit Agenda</li>
-            </ol>
-          </div>
+
+
+  <!-- Modal Update Package-->
+	<form action="<?php echo site_url('package/update');?>" method="post">
+		<div class="modal fade" id="UpdateModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Update Package</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+
+				<div class="form-group row">
+				    <label class="col-sm-2 col-form-label">Agenda</label>
+				    <div class="col-sm-10">
+				      <input type="text" name="nama_agenda" class="form-control" placeholder="Nama Agenda" required>
+				    </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+        <div class="form-group row">
+				    <label class="col-sm-2 col-form-label">Unit Pelaksana</label>
+				    <div class="col-sm-10">
+            <select class="form-control select2" name="id_unit" style="width: 100%;">
+              <option value="<?php echo $dt['id_unit']; ?>"><?php echo $dt['nama_unit']; ?></option>
+              <?php foreach ($unit as $dta):
+                if ($dt['id_unit'] != $dta['id_unit']):
+                ?>
+                <option value="<?php echo $dta['id_unit']; ?>"><?php echo $dta['nama_unit']; ?></option>
+                <?php 
+                endif;
+                endforeach; ?>
+              </select>
+				    </div>
+				</div>
+				<div class="form-group row">
+				    <label class="col-sm-2 col-form-label">Product</label>
+				    <div class="col-sm-10">
+				      	<select class="form-control select2" name="product_edit[]" data-width="100%" data-live-search="true" multiple required>
+				      		<?php foreach ($product->result() as $row) :?>
+						  		<option value="<?php echo $row->product_id;?>"><?php echo $row->product_name;?></option>
+						  	<?php endforeach;?>
+						</select>
+				    </div>
+        </div>
+        <div class="form-group row">
+				    <label class="col-sm-2 col-form-label">Tanggal Agenda</label>
+				    <div class="col-sm-10">
+				      <input type="date" name="tanggal_agenda" class="form-control" placeholder="Nama Agenda" required>
+				    </div>
+        </div>
+        <div class="form-group row">
+				    <label class="col-sm-2 col-form-label">Tanggal Selesai</label>
+				    <div class="col-sm-10">
+				      <input type="date" name="tanggal_selesai" class="form-control" placeholder="Nama Agenda" required>
+				    </div>
+        </div>
+        <div class="form-group row">
+				    <label class="col-sm-2 col-form-label">Jam Mulai</label>
+				    <div class="col-sm-10">
+				      <input type="time" name="jam_mulai" class="form-control" placeholder="Nama Agenda" required>
+				    </div>
+        </div>
+        <div class="form-group row">
+				    <label class="col-sm-2 col-form-label">Jam Selesai</label>
+				    <div class="col-sm-10">
+				      <input type="time" name="jam_selesai" class="form-control" placeholder="Nama Agenda" required>
+				    </div>
+        </div>
+        <div class="form-group row">
+				    <label class="col-sm-2 col-form-label">Tanggal Pengajuan</label>
+				    <div class="col-sm-10">
+				      <input type="date" name="tanggal_pengajuan" class="form-control" placeholder="Nama Agenda" required>
+				    </div>
+        </div>
+        <div class="form-group row">
+				    <label class="col-sm-2 col-form-label">Tanggal Publis</label>
+				    <div class="col-sm-10">
+				      <input type="date" name="tanggal_publish" class="form-control" placeholder="Nama Agenda" required>
+				    </div>
+        </div>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- SELECT2 EXAMPLE -->
-        <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Form Edit Agenda</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form" method="POST" action="<?php echo base_url('admin/proses_edit_agenda') ?>">
-                <div class="card-body">
-                  <div class="row">
-                      <div class="col-md-6">
+		      </div>
+		      <div class="modal-footer">
+		      	<input type="hidden" name="edit_id" required>
+		        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn btn-success btn-sm">Update</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+  </form>
+  
+  <script type="text/javascript">
+		$(document).ready(function(){
+			$('.select2').selectpicker();
 
-                      
-                         <!--  <div class="form-group">
-                            <label for="id_golongan">ID  Agenda</label> -->
-                            <input type="hidden" class="form-control" id="id_agenda" name="id_agenda" value="<?php echo $dt['id_agenda']; ?>"placeholder="ID Agenda">
-                          <!-- </div> -->
-                          <div class="form-group">
-                            <label for="golongan">Agenda</label>
-                            <input type="text" class="form-control" id="agenda" value="<?php echo $dt['nama_agenda']; ?>"name="agenda" placeholder="Nama Agenda">
-                          </div>
-                           <div class="form-group">
-                              <label>Unit Pelaksana</label>
-                              <select class="form-control select2" name="id_unit" style="width: 100%;">
-                                <option value="<?php echo $dt['id_unit']; ?>"><?php echo $dt['nama_unit']; ?></option>
-                                <?php foreach ($unit as $dta):
-                                  if ($dt['id_unit'] != $dta['id_unit']):
-                                ?>
-                                <option value="<?php echo $dta['id_unit']; ?>"><?php echo $dta['nama_unit']; ?></option>
-                              <?php 
-                              endif;
-                              endforeach; ?>
-                              </select>
-                            </div>
+			//GET UPDATE
+			$('.update-record').on('click',function(){
+				var id_agenda = $(this).data('id_agenda');
+        var nama_agenda = $(this).data('nama_agenda');
+        var tanggal_agenda = $(this).data('tanggal_agenda');
+        var tanggal_selesai = $(this).data('tanggal_selesai');
+				$(".strings").val('');
+				$('#UpdateModal').modal('show');
+				$('[name="edit_id"]').val(package_id);
+				$('[name="package_edit"]').val(package_name);
+                //AJAX REQUEST TO GET SELECTED PRODUCT
+                $.ajax({
+                    url: "<?php echo site_url('package/get_product_by_package');?>",
+                    method: "POST",
+                    data :{package_id:package_id},
+                    cache:false,
+                    success : function(data){
+                        var item=data;
+                        var val1=item.replace("[","");
+                        var val2=val1.replace("]","");
+                        var values=val2;
+                        $.each(values.split(","), function(i,e){
+                            $(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
+                            $(".strings").selectpicker('refresh');
 
-                            <div class="form-group">
-                          <label>Display</label>
-                          <select class="form-control select2" name="id_display" style="width: 100%;">
-                            <option value="<?php echo $dt['id_display']; ?>"><?php echo $dt['display']; ?></option>
-                            <?php foreach ($display as $dta):?>
-                            <option value="<?php echo $dt['id_display']; ?>"><?php echo $dta['display']; ?></option>
-                          <?php endforeach; ?>
-                          </select>
-                        </div>
-                          <div class="form-group">
-                            <label for="golongan">Tanggal Agenda</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal_agenda" value="<?php echo $dt['tanggal_agenda']; ?>" placeholder="Tanggal Agenda">
-                          </div>
-                          <div class="form-group">
-                            <label for="id_golongan">Tanggal Selesai</label>
-                            <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai"  value="<?php echo $dt['tanggal_selesai']; ?>" placeholder="Tanggal Selesai">
-                          </div>
+                        });
+                    }
+                    
+                });
+                return false;
+			});
 
+			//GET CONFIRM DELETE
+			$('.delete-record').on('click',function(){
+				var package_id = $(this).data('package_id');
+				$('#DeleteModal').modal('show');
+				$('[name="delete_id"]').val(package_id);
+			});
 
-                      </div>
-                      <div class="col-md-6">
-
-                          <div class="form-group">
-                            <label for="golongan">Jam Mulai</label>
-                            <input type="time" class="form-control" id="jam_mulai" name="jam_mulai" value="<?php echo $dt['jam_mulai']; ?>" placeholder="Jam Mulai">
-                          </div>
-                           <div class="form-group">
-                            <label for="golongan">Jam Selesai</label>
-                            <input type="time" class="form-control" id="jam_selesai" name="jam_selesai" value="<?php echo $dt['jam_selesai']; ?>" placeholder="Jam Selesai">
-                          </div>
-                            <div class="form-group">
-                          <label>Status</label>
-                          <select class="form-control select2" name="status" style="width: 100%;">
-                            <option value="Diterima">Diterima</option>
-                             <option value="Ditolak">Ditolak</option>
-                          </select>
-                        </div>
-                          <div c
-                          <div class="form-group">
-                            <label for="golongan">Tanggal Pengajuan</label>
-                            <input type="date" class="form-control" id="tanggal_pengajuan" name="tanggal_pengajuan" value="<?php echo $dt['tanggal_pengajuan']; ?>"  placeholder="Tanggal Pengajuan">
-                          </div>
-                          <div class="form-group">
-                            <label for="golongan">Tanggal Publish</label>
-                            <input type="date" class="form-control" id="tanggal_publish" name="tanggal_publish" value="<?php echo $dt['tanggal_publish']; ?>" placeholder="Tanggal publish">
-                          </div>
-
-                           <div class="form-check">
-                            <input type="checkbox" class="form-check-input" name="persetujuan" id="persetujuan" value="1" <?php if($dt['persetujuan'] == '1'){ echo "checked"; } ?>>
-                            <label class="form-check-label" for="exampleCheck1">Minta Persetujuan</label>
-                          </div>
-
-                      </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                  <a href="<?php echo base_url('admin/lihat_agenda'); ?>"><button class="btn btn-danger">Cancel</button></a>
-                </div>
-              </form>
-            </div>
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+		});
+	</script>
