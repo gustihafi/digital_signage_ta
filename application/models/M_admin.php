@@ -104,29 +104,69 @@ public function lihat_agenda($id_agenda='')
 
 		}else{
 			
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit, agenda.persetujuan from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
 		}
 
 	}
 
 	public function proses_tambah_agenda()
 	{
-		
+
+	if(!empty($_POST['approve'])){
+		$approve = array(
+			'id_persetujuan'=> '',
+			'tanggal' 		=> date('Y-m-d'),
+			'pesan'			=> 'Minta Persetujuan',
+			'status'		=> 'Belum Approve'
+		);
+
 		$data = array(
+			'id_agenda' => '' ,
+			'id_unit' => $_POST['id_unit'], 
+			'nama_agenda' => $_POST['agenda'],
+			'tanggal_agenda' => date('Y-m-d',strtotime($_POST['tanggal_agenda'])),
+			'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
+			'jam_mulai' => $_POST['jam_mulai'],
+			'jam_selesai' => $_POST['jam_selesai'],
+			'status' => 'Proses',
+			'narasumber' => $_POST['narasumber'],
+			'tanggal_pengajuan' => date('Y-m-d')
+
+		);
+			}else{
+				$data = array(
 					'id_agenda' => '' ,
 					'id_unit' => $_POST['id_unit'], 
 					'nama_agenda' => $_POST['agenda'],
 					'tanggal_agenda' => date('Y-m-d',strtotime($_POST['tanggal_agenda'])),
 					'tanggal_selesai' => date('Y-m-d',strtotime($_POST['tanggal_selesai'])),
-					'jam_mulai' => $_POST['jam_selesai'],
+					'jam_mulai' => $_POST['jam_mulai'],
+					'jam_selesai' => $_POST['jam_selesai'],
 					'status' => 'Publish',
+					'narasumber' => $_POST['narasumber'],
 					'tanggal_pengajuan' => date('Y-m-d')
 
 				);
+			}	
+		
 		$this->db->insert('agenda',$data);
 		$id_agenda = $this->db->insert_id();
 		$jum=count($_POST['id_display']); 
 
+		if(!empty($_POST['approve'])){
+			$this->db->insert('persetujuan',$approve);
+			$id_persetujuan = $this->db->insert_id();
+			for ($i=0; $i < $jum ; $i++) { 
+				$dt = array(
+					'id_display_agenda' => '' ,
+					'id_agenda'=>$id_agenda,
+					'id_display' => $_POST['id_display'][$i],
+					'id_persetujuan' => $id_persetujuan
+				);
+	
+				$this->db->insert('display_agenda',$dt);
+			}
+		}else{
 		for ($i=0; $i < $jum ; $i++) { 
 			$dt = array(
 				'id_display_agenda' => '' ,
@@ -135,6 +175,7 @@ public function lihat_agenda($id_agenda='')
 			);
 
 			$this->db->insert('display_agenda',$dt);
+			}
 		}
 
 	}
@@ -236,11 +277,12 @@ DATA Persetujuan
 public function lihat_persetujuan($id_agenda='')
 	{
 		if ($id_agenda =='') {
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit,agenda.approve,agenda.persetujuan,display.display from unit join agenda on unit.id_unit=agenda.id_unit join display on display.id_display=agenda.id_display where agenda.persetujuan = '1'")->result_array();
+			return $this->db->query("SELECT * from display_agenda,unit,agenda,display,persetujuan where persetujuan.status = 'Belum Approve' GROUP BY display_agenda.id_agenda")->result_array();
 
-		}else{
+		}
+		else{
 			
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit, agenda.persetujuan from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
+			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan, unit.id_unit,unit.nama_unit from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
 		}
 
 	}
