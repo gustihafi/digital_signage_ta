@@ -92,48 +92,48 @@
 		</div>
   </form>
   
-  <script type="text/javascript">
-		$(document).ready(function(){
-			$('.select2').selectpicker();
+ //  <script type="text/javascript">
+	// 	$(document).ready(function(){
+	// 		$('.select2').selectpicker();
 
-			//GET UPDATE
-			$('.update-record').on('click',function(){
-				var id_agenda = $(this).data('id_agenda');
-        var nama_agenda = $(this).data('nama_agenda');
-        var tanggal_agenda = $(this).data('tanggal_agenda');
-        var tanggal_selesai = $(this).data('tanggal_selesai');
-				$(".strings").val('');
-				$('#UpdateModal').modal('show');
-				$('[name="edit_id"]').val(package_id);
-				$('[name="package_edit"]').val(package_name);
-                //AJAX REQUEST TO GET SELECTED PRODUCT
-                $.ajax({
-                    url: "<?php echo site_url('package/get_product_by_package');?>",
-                    method: "POST",
-                    data :{package_id:package_id},
-                    cache:false,
-                    success : function(data){
-                        var item=data;
-                        var val1=item.replace("[","");
-                        var val2=val1.replace("]","");
-                        var values=val2;
-                        $.each(values.split(","), function(i,e){
-                            $(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
-                            $(".strings").selectpicker('refresh');
+	// 		//GET UPDATE
+	// 		$('.update-record').on('click',function(){
+	// 			var id_agenda = $(this).data('id_agenda');
+ //        var nama_agenda = $(this).data('nama_agenda');
+ //        var tanggal_agenda = $(this).data('tanggal_agenda');
+ //        var tanggal_selesai = $(this).data('tanggal_selesai');
+	// 			$(".strings").val('');
+	// 			$('#UpdateModal').modal('show');
+	// 			$('[name="edit_id"]').val(package_id);
+	// 			$('[name="package_edit"]').val(package_name);
+ //                //AJAX REQUEST TO GET SELECTED PRODUCT
+ //                $.ajax({
+ //                    url: "<?php echo site_url('package/get_product_by_package');?>",
+ //                    method: "POST",
+ //                    data :{package_id:package_id},
+ //                    cache:false,
+ //                    success : function(data){
+ //                        var item=data;
+ //                        var val1=item.replace("[","");
+ //                        var val2=val1.replace("]","");
+ //                        var values=val2;
+ //                        $.each(values.split(","), function(i,e){
+ //                            $(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
+ //                            $(".strings").selectpicker('refresh');
 
-                        });
-                    }
+ //                        });
+ //                    }
                     
-                });
-                return false;
-			});
+ //                });
+ //                return false;
+	// 		});
 
-			//GET CONFIRM DELETE
-			$('.delete-record').on('click',function(){
-				var package_id = $(this).data('package_id');
-				$('#DeleteModal').modal('show');
-				$('[name="delete_id"]').val(package_id);
-			});
+	// 		//GET CONFIRM DELETE
+	// 		$('.delete-record').on('click',function(){
+	// 			var package_id = $(this).data('package_id');
+	// 			$('#DeleteModal').modal('show');
+	// 			$('[name="delete_id"]').val(package_id);
+	// 		});
 
-		});
-	</script>
+	// 	});
+	// </script>

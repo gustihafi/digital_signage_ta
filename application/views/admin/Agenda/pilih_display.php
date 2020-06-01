@@ -13,15 +13,32 @@
                                                         <!-- body modal -->
                                                         <div class="modal-body">
                                                         <form method="POST" action="<?= site_url('') ?>">
+                                                             <input type="text" id="id_displayx" name="id_displayx" value="<?php echo $id_agenda; ?>" />
+                                                            <?php if($list)
+                                                                    {
+                                                                    foreach($list as $x){ ?>
+                                                                        <input type="hidden" id="id_displayx" name="id_displayx" value="<?php echo $x->id_display; ?>" />
+                                                                        <?php
+                                                                    } 
+                                                                    } else { ?>
+
+                                                                    <input type="hidden" id="id_displayx" name="id_displayx" value="0" />
+                                                                    <?php } ?>
                                                         <div class="form-group">
-                                                            <label>Display</label>
-                                                            <select class="select2bs4" multiple="multiple" data-placeholder="Pilih Display" name="id_display[]" style="width: 100%;">
-                                                                <option disabled="">----Display----</option>
-                                                                <?php foreach ($display as $dt):?>
-                                                                <option value="<?php echo $dt['id_display']; ?>"><?php echo $dt['display']; ?></option>
-                                                            <?php endforeach; ?>
-                                                            </select>
-                                                            </div>
+                          <label>Display</label>
+                            <?php 
+                           
+                            if($list){
+                                    foreach($list as $x){
+                                        $data[] = $x->id_display; 
+                                    }
+                                }else{
+                                    $data[] = FALSE;
+                                }
+                            $selected = set_value('id_display[]',$data);
+                            echo form_dropdown('id_display[]', $display, $selected, "class='form-control select2' style='width: 100%;' id='id_display' multiple");
+                            ?>
+                        </div>
                                                     </div>
                                                     <!-- footer modal -->
                                                     <div class="modal-footer">

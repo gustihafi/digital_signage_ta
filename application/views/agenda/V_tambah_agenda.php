@@ -85,6 +85,17 @@
                       </div>
                   </div>
                 </div>
+
+                <label class="col-sm-3 control-label text-sm-left pt-2">Minta Persetujuan </label>
+                              <div class="col-sm-6" style="margin:10px;">
+                              <label class="switch">
+                                <input type="checkbox" name="approve" />
+                                <span class="slider round">
+                                </span>
+                              </div>
+                              </label>
+                              *Jika ingin minta persetujuan 
+                          </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">

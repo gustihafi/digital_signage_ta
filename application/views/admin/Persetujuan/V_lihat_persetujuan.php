@@ -96,7 +96,7 @@
                 </tfoot>
               </table>
             </div>
-            <?php include('V_edit_persetujuan'); ?>
+            <!-- <?php include('V_edit_persetujuan'); ?> -->
             <!-- /.card-body -->
           </div>
           <!-- /.card -->

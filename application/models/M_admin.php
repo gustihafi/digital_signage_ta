@@ -100,11 +100,11 @@ DATA Agenda
 public function lihat_agenda($id_agenda='')
 	{
 		if ($id_agenda =='') {
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish,  unit.id_unit,unit.nama_unit from unit join agenda on unit.id_unit=agenda.id_unit ")->result_array();
+			return $this->db->query("SELECT * FROM unit join agenda on unit.id_unit=agenda.id_unit ")->result_array();
 
 		}else{
 			
-			return $this->db->query("SELECT agenda.id_agenda,agenda.nama_agenda,agenda.tanggal_agenda,agenda.tanggal_selesai,agenda.jam_mulai,agenda.jam_mulai,agenda.jam_selesai,agenda.status,agenda.tanggal_pengajuan,agenda.tanggal_publish, unit.id_unit,unit.nama_unit from unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
+			return $this->db->query("SELECT * FROM unit join agenda on unit.id_unit=agenda.id_unit where agenda.id_agenda='$id_agenda'")->row_array();
 		}
 
 	}
@@ -237,6 +237,35 @@ public function lihat_display($id_display='')
 		}
 	}
 
+	  
+ public function get_display()
+  {
+      $query = $this->db->order_by('id_display', 'ASC')->get('display');
+      if($query->num_rows() > 0){
+        foreach ($query->result() as $row)
+        {
+          $dropdown[$row->id_display] = $row->display;
+        }
+      }else{
+        $dropdown[''] = 'Belum Ada Data'; 
+      }
+      return $dropdown;
+  }
+
+
+	  public function get_display_list($id=null)
+  {
+    $this->db->where('id_agenda', $id);
+    
+    $query = $this->db->get('display_agenda');
+    if($query->num_rows() > 0){
+      return $query->result();  
+    }else{
+      //show_404();
+      return FALSE;
+    }
+  }
+
 		public function proses_tambah_display($data)
 	{
 		$this->db->insert('display',$data);
@@ -297,6 +326,13 @@ public function lihat_persetujuan($id_agenda='')
 
 	public function proses_approve_persetujuan($data,$id_agenda)
 	{
+		$approve = array(
+			'id_persetujuan'=> '',
+			'tanggal' 		=> date('Y-m-d'),
+			'pesan'			=> 'Agenda Berhasil di Konfirmasi',
+			'status'		=> 'Sudah dikonfirmasi'
+		);
+		$this->db->insert('persetujuan', $approve);
 		$this->db->where('id_agenda',$id_agenda);
 		$this->db->update('agenda',$data);
 	}
@@ -444,6 +480,46 @@ DATA kelas
         }
         return $dropdown;
     }
+
+    	/**
+=====================================================================================================================================
+DATA media
+===================================================================================================================================== 
+*/
+	public function lihat_media($id_matakuliah='')
+	{
+		if ($id_matakuliah =='') {
+			return $this->db->get('media')->result_array();
+		}else{
+			$this->db->where('id_media',$id_matakuliah);
+			return $this->db->get('media')->row_array();
+		}
+	}
+
+	public function get_id_media($id=null)
+    {
+        $this->db->where('id_media', $id);
+        $query = $this->db->get('media');
+        return $query->row();
+    }
+
+	public function proses_tambah_media($data)
+	{
+		$this->db->insert('media',$data);
+	}
+	public function proses_edit_media($data,$id_matakuliah)
+	{
+		$this->db->where('id_media',$id_matakuliah);
+		$this->db->update('media',$data);
+	}
+	public function proses_hapus_media($id){
+		$where = array(
+			'id_media' => $id
+			);
+		$this->db->where($where);
+		$this->db->delete('media');
+	}
+
 
 	
 }
