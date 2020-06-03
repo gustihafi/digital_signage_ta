@@ -202,7 +202,7 @@ DATA akun
 			{
 				$data = array(
 					'username' => $_POST['username'], 
-					'password' => $_POST['password'],
+					'password' =>md5($_POST['pwd_baru']),
 					'id_unit' => $_POST['id_unit'],
 					'level' => $_POST['level']
 
@@ -227,7 +227,8 @@ DATA agenda
 */
 		public function lihat_agenda()
 			{
-				$data['display'] = $this->admin->lihat_display();
+				$data['display']           = $this->admin->get_display(); // memastikan value awal pada variabel record;
+				$data['list']           = $this->admin->get_display_list();
 				$data['relasi'] = $this->admin->lihat_persetujuan();
 				$data['data'] = $this->admin->lihat_agenda();
 				$this->load->view('head',$data);
@@ -258,7 +259,9 @@ DATA agenda
 
 				$data['dt'] = $this->admin->lihat_agenda($id_agenda);
 				$data['unit'] = $this->admin->lihat_unit();
-				$data['display'] = $this->admin->lihat_display();
+				//$data['display'] = $this->admin->lihat_display_agenda($id_agenda);
+				$data['display']           = $this->admin->get_display(); // memastikan value awal pada variabel record;
+				$data['list']           = $this->admin->get_display_list($id_agenda);
 				$this->load->view('head',$data);
 				$this->load->view('admin/menu');
 				$this->load->view('admin/Agenda/V_edit_agenda');
@@ -337,7 +340,7 @@ DATA agenda
 			public function proses_approve_persetujuan($id=null)
 			{
 				$data = array(
-					'approve' => 1, 
+					'status' => 'konfirmasi', 
 				);
 			
 				$this->admin->proses_approve_persetujuan($data,$id);
@@ -642,6 +645,192 @@ DATA matakuliah
 				$this->admin->proses_hapus_matakuliah($id);
 				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('admin/lihat_matakuliah')."';</script>";
 			}
+
+		/**
+=====================================================================================================================================
+DATA Media
+===================================================================================================================================== 
+*/
+			public function lihat_media()
+			{
+				$data['data'] = $this->admin->lihat_media();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Media/V_lihat_media');
+				$this->load->view('footer');
+			}
+
+			public function tambah_media()
+			{
+				
+				$this->load->view('head');
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Media/V_tambah_media');
+				$this->load->view('footer');
+			}
+
+
+public function proses_tambah_media()
+{
+	$config= array('upload_path' => './file/',
+		'allowed_types'=> 'jpg|png|jpeg|pdf' 
+					);
+	$this->load->library('upload',$config);
+	if(!$this->upload->do_upload('file')){
+		$cover= 'tidak ada data';
+		var_dump($this->upload->display_errors());
+	}
+	else
+	{
+		$result= $this->upload->data();
+		$cover =$result['file_name'];
+	}
+
+	 $data = array(
+				'nama_media' =>$cover,
+				'tanggal_upload' => $_POST['tanggal_upload'], 
+				'status' => $_POST['status'], 
+					
+		        );
+	
+
+            $this->admin->proses_tambah_media($data);
+           echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_media')."';</script>";
+}
+
+
+	// 		public function proses_tambah_media()
+ //    {
+ //    	$this->load->library('upload');
+	// 	$config['upload_path'] = './upload/'; //path folder
+ //        $config['allowed_types'] = 'pdf|jpg|png|bmp'; //type yang dapat diakses bisa anda sesuaikan
+ //        //$config['max_size'] = '42048'; //maksimum besar file 2M
+ //        //$config['max_width']  = '5000'; //lebar maksimum 5000 px
+	// //	$config['max_height']  = '5000'; //tinggi maksimu 5000 px
+	// 	//$config['overwrite']  = TRUE; //tinggi maksimu 5000 px
+ //        $this->upload->initialize($config);
+ //        if($_FILES['file']['name'])
+	// 	{
+	// 		if ($this->upload->do_upload('file')){
+	// 			$dokumen = $this->upload->data();
+	// 	        $data = array(
+	// 			'nama_media' =>$dokumen['file_name'],
+	// 			'tanggal_upload' => $_POST['tanggal_upload'], 
+	// 			'status' => $_POST['status'], 
+					
+	// 	        );
+	
+
+ //            $this->admin->proses_tambah_media($data);
+ //           echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_media')."';</script>";
+ //        	} else {
+ //        	echo "<script language='javascript'>alert('Foto terlalu besar'); document.location='". base_url('admin/lihat_media')."';</script>";
+ //        	}
+	// 		//helper_log("add", "Menambah Daftar Pengguna");
+	// 		}else{
+	// 		echo "<script language='javascript'>alert('Gagal upload'); document.location='". base_url('admin/lihat_media')."';</script>";
+	// 	}
+        
+ //    }
+
+				public function edit_media($id_media)
+			{
+
+				$data['dt'] = $this->admin->lihat_media($id_media);
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Media/V_edit_media');
+				$this->load->view('footer');
+			}
+
+			public function proses_edit_media($id)
+{
+	$config= array('upload_path' => './file/',
+		'allowed_types'=> 'jpg|png|jpeg|pdf' 
+					);
+	$this->load->library('upload',$config);
+	if(!$this->upload->do_upload('file')){
+		$cover= 'tidak ada data';
+		var_dump($this->upload->display_errors());
+	}
+	else
+	{
+		$result= $this->upload->data();
+		$cover =$result['file_name'];
+	}
+
+	 $data = array(
+				'nama_media' =>$cover,
+				'tanggal_upload' => $_POST['tanggal_upload'], 
+				'status' => $_POST['status'], 
+					
+		        );
+	
+
+     $this->admin->proses_edit_media($data, $id);
+           echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_media')."';</script>";
+}
+
+
+
+
+  //   {
+
+  //   	$this->load->library('upload');
+		// $config['upload_path'] = './upload/'; //path folder
+  //       $config['allowed_types'] = 'pdf|jpg|png|bmp|jpeg'; //type yang dapat diakses bisa anda sesuaikan
+  //       $config['max_size'] = '2048'; //maksimum besar file 2M
+  //       $config['max_width']  = '5000'; //lebar maksimum 5000 px
+		// $config['max_height']  = '5000'; //tinggi maksimu 5000 px
+		// $config['overwrite']  = TRUE; //tinggi maksimu 5000 px
+  //       $this->upload->initialize($config);
+    	
+  //        $data = array(
+		// 		'tanggal_upload' => $_POST['tanggal_upload'], 
+		// 		'status' => $_POST['status'], 
+  //       );
+  //        $this->admin->proses_edit_media($data, $id);
+
+  //        if($this->input->post('remove_photo')) // if remove photo checked
+  //       {
+  //           if(file_exists('upload/'.$this->input->post('remove_photo')) && $this->input->post('remove_photo'))
+  //               unlink('upload/'.$this->input->post('remove_photo'));
+  //           $data['nama_media'] = '';
+  //       }
+
+  //       if(!empty($_FILES['file']['name']))
+		// {
+		// 	if ($this->upload->do_upload('file')){
+
+		// 		$person = $this->admin->get_id_media($id);
+  //           	if(file_exists('upload/'.$person->nama_media) && $person->nama_media)
+  //               unlink('upload/'.$person->nama_media);
+
+		// 		$dokumen = $this->upload->data();
+		//         $data['nama_media'] = $dokumen['file_name'];
+	
+		        
+  //          $this->admin->proses_edit_media($data, $id);
+		// 	//helper_log("edit", "Merubah Daftar Pengguna");
+  //          echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_media')."';</script>";
+  //       	} else {
+  //       	echo "<script language='javascript'>alert('Foto terlalu besar'); document.location='". base_url('admin/lihat_media')."';</script>";
+  //       	}
+		// 	//helper_log("add", "Menambah Daftar Pengguna");
+		// 	}else{
+		// 	echo "<script language='javascript'>alert('Gagal upload'); document.location='". base_url('admin/lihat_media')."';</script>";
+		// } }
+
+            
+  
+
+			
+			public function hapus_media($id){
+				$this->admin->proses_hapus_media($id);
+				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('admin/lihat_media')."';</script>";
+			}
+
+
 
 	
 		}
