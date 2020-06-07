@@ -1,0 +1,39 @@
+h1,h2,p,a{
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+.konten {
+    overflow: hidden;
+    width: 70%;
+}
+
+.jam-digital {
+    overflow: hidden;
+    background-color: #6bb9f0;
+    width: 125px;
+    height: 115px;
+    margin: 30px auto;
+    float: right;
+    border: 1px solid #efefef;
+}
+
+.cuaca {
+    overflow: hidden;
+    width: 50%;
+    margin: 30px auto;
+    float: left;
+    border: 1px solid #efefef;
+}
+.kotak{
+    float: left;
+    width: 33.3%;
+    height: 60px;
+    background-color: #6bb9f0;
+}
+.jam-digital p {
+    color: black;
+    font-size: 120%;
+    text-align: center;
+    /* margin-top: 10%; */
+}

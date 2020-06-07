@@ -19,6 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition layout-top-nav">
+<link rel="stylesheet" href="<?php echo base_url() ?>/asset/css/widget.css">
 <div class="wrapper">
 
   <!-- -->
@@ -43,17 +44,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         Agenda Signage
                       </p>
                     </div>
-                    <div class="col-md-5" style="display: flex;">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <h5>Pelaihari, Weather</h5>
-                          </div>
+                    <div class="col-md-5" style="display: flex; border: 5px solid black;">
+                        <!-- <div class="konten" style="border: 5px solid black;"> -->
+                          <!-- <div class="col-md-12" style="border: 5px solid black;">  -->
+                          <div class="jam-digital" style="border: 5px solid black;">
+                            <p>
+                            <script type='text/javascript'>
+                            
+                                var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+                                var date = new Date();
+                                var day = date.getDate();
+                                var month = date.getMonth();
+                                var thisDay = date.getDay(),
+                                    thisDay = myDays[thisDay];
+                                var yy = date.getYear();
+                                var year = (yy < 1000) ? yy + 1900 : yy;
+                                document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+                                //-->
+                              </script>
+                            </p>
+                            <div class="kotak">
+                              <p id="jam"></p>
+                            </div>
+                            <div class="kotak">
+                              <p id="menit"></p>
+                            </div>
+                            <div class="kotak">
+                              <p id="detik"></p>
+                            </div>
+                          <!-- </div> -->
+                          <!-- </div> -->
                         </div>
                       
 
                     </div>
                 </div>
               </div>
+              <a class="weatherwidget-io" href="https://forecast7.com/en/n3d77114d81/tanah-laut-regency/" data-label_1="PERKIRAAN CUACA" 
+                      data-label_2="KABUPATEN TANAH LAUT" data-days="3" data-theme="weather_one" >
+                            PERKIRAAN CUACA KABUPATEN TANAH LAUT</a>
             </div>
 
 
@@ -230,5 +260,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="<?php echo base_url() ?>asset/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>asset/dist/js/adminlte.min.js"></script>
+
+<script type="text/javascript">
+		
+		function showTime() {
+		    var a_p = "";
+		    var today = new Date();
+		    var curr_hour = today.getHours();
+		    var curr_minute = today.getMinutes();
+		    var curr_second = today.getSeconds();
+		    if (curr_hour < 12) {
+		        a_p = "AM";
+		    } else {
+		        a_p = "PM";
+		    }
+		    if (curr_hour == 0) {
+		        curr_hour = 12;
+		    }
+		    if (curr_hour > 12) {
+		        curr_hour = curr_hour - 12;
+		    }
+		    curr_hour = checkTime(curr_hour);
+		    curr_minute = checkTime(curr_minute);
+		    curr_second = checkTime(curr_second);
+		 document.getElementById('jam').innerHTML=curr_hour;
+		 document.getElementById('menit').innerHTML=curr_minute;
+		 document.getElementById('detik').innerHTML=curr_second + " " + a_p;
+		    }
+
+		function checkTime(i) {
+		    if (i < 10) {
+		        i = "0" + i;
+		    }
+		    return i;
+		}
+		setInterval(showTime, 500);
+		//-->
+		</script>
+
+<script>
+		!function(d,s,id){
+		  var js,fjs=d.getElementsByTagName(s)[0];
+			if(!d.getElementById(id)){
+			  js=d.createElement(s);
+			  js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';
+			  fjs.parentNode.insertBefore(js,fjs);
+		}
+			}
+		  (document,'script','weatherwidget-io-js');
+		</script>
 </body>
 </html>
