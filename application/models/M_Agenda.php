@@ -39,7 +39,6 @@ public function lihat_agenda($id_agenda='')
 					'status' => 'proses',
 					'tanggal_pengajuan' => date('Y-m-d'),
 					'narasumber' => $this->session->username('username'),
-
 				);
 		$this->db->insert('agenda',$data);
 		$id_agenda = $this->db->insert_id();

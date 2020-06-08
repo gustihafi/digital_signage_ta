@@ -551,3 +551,19 @@ if ( ! function_exists('matakuliah'))
 	}
 }
 
+if ( ! function_exists('unit'))
+{
+	function unit($value)
+	{
+		$CI =& get_instance();
+		
+		$CI->db->where('id_unit',$value);
+		$query = $CI->db->get('unit');
+		if ($query->num_rows() > 0) {
+			return $query->row()->nama_unit;
+		} else {
+			return '0';
+		}
+	}
+}
+

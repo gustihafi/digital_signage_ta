@@ -35,7 +35,7 @@
               </p>
             </a>
           </li>
-          
+         
           <li class="nav-item">
             <a href="<?php echo base_url('agenda') ?>" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -45,29 +45,9 @@
               </p>
             </a>
           </li>
-          <?php if ($this->session->userdata('level') == 'Asisten Direktur' || $this->session->userdata('level') == 'Asisten Wadir'): ?>
+         
           <li class="nav-item">
-            <a href="<?php echo base_url('jadwalmengajar') ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Jadwal Mengajar
-               
-              </p>
-            </a>
-          </li> 
-        <?php endif; ?>
-        <li class="nav-item">
-            <a href="<?php echo base_url('akun') ?>" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-              My Akun
-                
-              </p>
-            </a>
-          </li>
-          <br>
-          <li class="nav-item">
-            <a href="<?php echo base_url('auth/logout') ?>" onClick="return confirm('Apakah Ingin Logout?')" class="nav-link">
+            <a href="<?php echo base_url('Auth/logout') ?>" onClick="return confirm('Apakah Ingin Logout?')" class="nav-link">
               <i class="nav-icon fas fa-power-off"></i>
               <p>
               Logout

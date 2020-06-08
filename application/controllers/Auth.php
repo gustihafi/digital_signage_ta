@@ -17,6 +17,7 @@ class Auth extends CI_Controller
 			if($query->num_rows() > 0){
 				$row = $query->row();
 				$params = array(
+					'id_akun' => $row->id_akun,
 					'username' => $row->username,
 					'level' => $row->level,
 					'status' => "login"
