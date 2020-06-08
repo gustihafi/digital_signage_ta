@@ -47,7 +47,9 @@
                   foreach ($data as $key):
                 ?>
                 <tr>
+                  <?php if($key['username'] == $this->session->userdata('username')){
 
+                  }else{ ?>
                   <td><?php echo $no++; ?></td>
                   <td><?php echo $key['username']; ?></td>
                   <td><?php echo $key['level']; ?></td>
@@ -56,6 +58,8 @@
                   <a href="<?php echo base_url('admin/edit_akun/'.$key['id_akun']) ?>"><button class="btn btn-primary"><i class="fas fa-edit"></i> Edit</button></a> 
                   <a href="<?php echo base_url('admin/hapus_akun/'.$key['id_akun']) ?>" onClick="return confirm('Yakin Hapus?')"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
                   </td>
+                <?php  } ?>
+                  
 
                 </tr>
                 <?php endforeach; ?>

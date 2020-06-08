@@ -17,7 +17,7 @@
           <img src="<?php echo base_url() ?>/asset/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="<?= site_url('admin/profil'); ?>" title="Profil" class="d-block"><?= $this->session->userdata('username'); ?></a>
         </div>
       </div>
 

@@ -9,7 +9,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Tabel Agenda</li>
+              <li class="breadcrumb-item active">Profil</li>
             </ol>
           </div>
         </div>
@@ -42,7 +42,7 @@
                   </li>
                 </ul>
 
-                <a href="<?= site_url('akun/edit_akun/'.$record->id_akun) ?>" class="btn btn-primary btn-block"><b>Ubah Data</b></a>
+                <a href="<?= site_url('admin/edit_profil/'.$record->id_akun) ?>" class="btn btn-primary btn-block"><b>Ubah Data</b></a>
                
               </div>
               <!-- /.card-body -->

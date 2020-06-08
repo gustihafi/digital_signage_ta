@@ -14,6 +14,7 @@
 				parent::__construct();
 				$this->load->helper('my_helper');
 				$this->load->model('M_admin','admin');
+				$this->load->model('M_Akun','akun');
 				if($this->session->userdata('status') != 'login'){
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -145,12 +146,60 @@ DATA UNIT
 				$this->admin->proses_edit_unit($data,$id_unit);
 				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_unit')."';</script>";
 			}
+
+/**
+=====================================================================================================================================
+Profil
+===================================================================================================================================== 
+*/
+
+			public function profil(){
+				$data['record'] = $this->akun->get_by_id();
+				$this->load->view('head',$data);
+				$this->load->view('admin/menu');
+				$this->load->view('admin/Profil/V_profil');
+				$this->load->view('footer');
+			}
+	
+			public function edit_profil($id_akun)
+				{
+					$data['dt'] = $this->akun->lihat_akun($id_akun);
+					$data['unit'] = $this->akun->lihat_unit();
+					$this->load->view('head',$data);
+					$this->load->view('admin/menu');
+					$this->load->view('admin/Profil/V_edit_profil');
+					$this->load->view('footer');
+				}
+	
+			public function proses_edit_profil()
+				{
+					if ($this->input->post('pwd_lama') == '1') {
+						$data = array(
+						'username' => $_POST['username'], 
+						'id_unit' => $_POST['id_unit'],
+						'level' => $_POST['level']
+					);
+	
+					} else {
+						$data = array(
+						'username' => $_POST['username'], 
+						'password' => md5($_POST['pwd_baru']), 
+						'id_unit' => $_POST['id_unit'],
+						'level' => $_POST['level']
+					);
+				}
+					
+					$id_akun = $_POST['id_akun'];
+					$this->akun->proses_edit_akun($data,$id_akun);
+					echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/profil')."';</script>";
+				}
 			
 /**
 =====================================================================================================================================
 DATA akun
 ===================================================================================================================================== 
 */
+
 
 		public function lihat_akun()
 			{
@@ -200,14 +249,21 @@ DATA akun
 
 			public function proses_edit_akun()
 			{
-				$data = array(
-					'username' => $_POST['username'], 
-					'password' => $_POST['password'],
-					'id_unit' => $_POST['id_unit'],
-					'level' => $_POST['level']
-
-
-				);
+				if($_POST['pwd_lama'] = '1'){
+					$data = array(
+						'username' => $_POST['username'], 
+						'id_unit' => $_POST['id_unit'],
+						'level' => $_POST['level']
+					);
+				}else{
+					$data = array(
+						'username' => $_POST['username'], 
+						'password' => md5($_POST['pwd_baru']),
+						'id_unit' => $_POST['id_unit'],
+						'level' => $_POST['level']
+					);
+				}
+				
 				$id_akun = $_POST['id_akun'];
 				$this->admin->proses_edit_akun($data,$id_akun);
 				echo "<script language='javascript'>alert('Data Berhasil Disimpan'); document.location='". base_url('admin/lihat_akun')."';</script>";
