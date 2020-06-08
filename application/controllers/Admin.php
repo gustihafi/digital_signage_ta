@@ -202,7 +202,7 @@ DATA akun
 			{
 				$data = array(
 					'username' => $_POST['username'], 
-					'password' =>md5($_POST['pwd_baru']),
+					'password' => $_POST['password'],
 					'id_unit' => $_POST['id_unit'],
 					'level' => $_POST['level']
 
@@ -218,6 +218,7 @@ DATA akun
 				echo "<script language='javascript'>alert('Data Berhasil dihapus'); document.location='". base_url('admin/lihat_akun')."';</script>";
 			}
 /**
+
 
 		
 /**
